@@ -8,7 +8,7 @@ typedef struct move{
 
 typedef struct pokemon{
     char nome[100];
-    int numero, nivel, ataque, defesa, hp, hp_bkp;
+    int numero, nivel, ataque, defesa, hp, hp_max;
     Move golpe1, golpe2;
 }Pokemon;
 

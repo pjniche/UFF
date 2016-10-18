@@ -12,13 +12,13 @@ Pokemon leituraPokemon(){
     scanf("%d", &p.nivel);
     printf("Digite os valores de ataque, defesa e hp do Pokemon: ");
     scanf("%d %d %d", &p.ataque, &p.defesa, &p.hp);
-    p.hp_bkp = p.hp;
+    p.hp_max = p.hp;
     printf("Digite o nome do primeiro golpe do Pokemon: ");
-    scanf("%s", &p.golpe1.nome);
+    scanf("%s", p.golpe1.nome);
     printf("Digite o valor base do primeiro golpe do Pokemon: ");
     scanf("%d", &p.golpe1.dano);
     printf("Digite o nome do segundo golpe do Pokemon: ");
-    scanf("%s", &p.golpe2.nome);
+    scanf("%s", p.golpe2.nome);
     printf("Digite o valor base do segundo golpe do Pokemon: ");
     scanf("%d", &p.golpe2.dano);
     return p;
@@ -35,7 +35,7 @@ int estaVivo(Pokemon p){
 
 //retorna o nome do Pokemon.
 char* nomePokemon(Pokemon p){
-    return p->nome;
+    return p.nome;
 }
 
 //retorna o número de um Pokemon.
@@ -57,6 +57,5 @@ int ataque(Pokemon p1, int m, Pokemon *p2){
 
 //restora o hp do pokemon ao máximo.
 void curaPokemon(Pokemon *p){
-    p->hp = p->hp_bkp;
-    return 0;
+    p->hp = p->hp_max;
 }
