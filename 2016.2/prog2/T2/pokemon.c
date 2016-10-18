@@ -35,7 +35,8 @@ int estaVivo(Pokemon p){
 
 //retorna o nome do Pokemon.
 char* nomePokemon(Pokemon p){
-    return p.nome;
+    char* nome = p.nome;
+    return nome;
 }
 
 //retorna o número de um Pokemon.

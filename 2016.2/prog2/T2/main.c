@@ -12,12 +12,13 @@ int main (void){
     printf("\n");
     printf("Entre com os atributos do segundo Pokemon.\n");
     player2=leituraPokemon();
-    printf("\n\n");
+    printf("\n");
 
-    //Inicio da batalha
-    printf("\nINICIO DA BATALHA!\n\n");
-    movimentos = 0;
     do {
+        //Inicio da batalha
+        printf("INICIO DA BATALHA!\n");
+        movimentos = 0;
+
         do {
             //Player 1 ataca
             printf("O pokemon %s (#%d) esta atacando.\n", nomePokemon(player1), numeroPokemon(player1));
@@ -33,21 +34,25 @@ int main (void){
             dano = ataque(player2, golpe, &player1);
             printf("Dano causado em %s = %d\n\n", nomePokemon(player1), dano);
             movimentos++;
-            //Fim da batalha
-            printf("FIM DE BATALHA!\n");
-            if (estaVivo(player1) == 1){
-                printf("\nO pokemon %s (#%d) venceu apos %d movimentos!\n", nomePokemon(player1), numeroPokemon(player1), movimentos);
-            }
-            if (estaVivo(player2) == 1){
-                printf("\nO pokemon %s (#%d) venceu apos %d movimentos!\n", nomePokemon(player2), numeroPokemon(player2), movimentos);
-            }
+            
         } while (estaVivo(player1) == 1 && estaVivo(player2) == 1);
+
+        //Fim da batalha
+        printf("FIM DE BATALHA!\n");
+        if (estaVivo(player1) == 1){
+            printf("O pokemon %s (#%d) venceu apos %d movimentos!\n", nomePokemon(player1), numeroPokemon(player1), movimentos);
+        }
+        if (estaVivo(player2) == 1){
+            printf("O pokemon %s (#%d) venceu apos %d movimentos!\n", nomePokemon(player2), numeroPokemon(player2), movimentos);
+        }
+
         printf("Deseja simular outra batalha?: ");
-        scanf("%c", &opcao);
+        scanf(" %c", &opcao);
         curaPokemon(&player1);
         curaPokemon(&player2);
-        printf("\n\n");
-    } while (opcao != 'N');
+        printf("\n");
+
+    } while (opcao != 78);
 
     return 0;
 }
