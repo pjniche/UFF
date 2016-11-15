@@ -21,20 +21,23 @@ int main (void){
 
         do {
             //Player 1 ataca
-            printf("O pokemon %s (#%d) esta atacando.\n", nomePokemon(player1), numeroPokemon(player1));
-            printf("Digite o movimento que ele deve usar (1 ou 2): ");
-            scanf("%d", &golpe);
-            dano = ataque(player1, golpe, &player2);
-            printf("Dano causado em %s = %d\n\n", nomePokemon(player2), dano);
-            movimentos++;
+            if (estaVivo(player1) == 1){
+                printf("O pokemon %s (#%d) esta atacando.\n", nomePokemon(player1), numeroPokemon(player1));
+                printf("Digite o movimento que ele deve usar (1 ou 2): ");
+                scanf("%d", &golpe);
+                dano = ataque(player1, golpe, &player2);
+                printf("Dano causado em %s = %d\n\n", nomePokemon(player2), dano);
+                movimentos++;
+            }
             //Player 2 ataca
-            printf("O pokemon %s (#%d) esta atacando.\n", nomePokemon(player2), numeroPokemon(player2));
-            printf("Digite o movimento que ele deve usar (1 ou 2): ");
-            scanf("%d", &golpe);
-            dano = ataque(player2, golpe, &player1);
-            printf("Dano causado em %s = %d\n\n", nomePokemon(player1), dano);
-            movimentos++;
-            
+            if (estaVivo(player2) == 1){
+                printf("O pokemon %s (#%d) esta atacando.\n", nomePokemon(player2), numeroPokemon(player2));
+                printf("Digite o movimento que ele deve usar (1 ou 2): ");
+                scanf("%d", &golpe);
+                dano = ataque(player2, golpe, &player1);
+                printf("Dano causado em %s = %d\n\n", nomePokemon(player1), dano);
+                movimentos++;
+            }
         } while (estaVivo(player1) == 1 && estaVivo(player2) == 1);
 
         //Fim da batalha
