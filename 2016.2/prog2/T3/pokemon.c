@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "pokemon.h"
 
 //faz a leitura dos dados do Pokemon.
@@ -13,17 +14,17 @@ Pokemon leituraPokemon(){
     printf("Digite os valores de ataque, defesa e hp do Pokemon: ");
     scanf("%d %d %d", &p.ataque, &p.defesa, &p.hp);
     p.hp_max = p.hp;
-    printf("Digite o nome do primeiro golpe do Pokemon: ");
-    scanf("%s", p.golpe1.nome);
-    printf("Digite o valor base do primeiro golpe do Pokemon: ");
-    scanf("%d", &p.golpe1.dano);
-    printf("Digite o nome do segundo golpe do Pokemon: ");
-    scanf("%s", p.golpe2.nome);
-    printf("Digite o valor base do segundo golpe do Pokemon: ");
-    scanf("%d", &p.golpe2.dano);
+    printf("Digite o numero de golpes do Pokemon: ");
+    scanf("%d", &p.m);
+    for (int i=0;i<p.m;i++){
+        printf("Digite o nome do golpe %d do Pokemon: ", i+1);
+        scanf("%s", p.golpe[i].nome);
+        printf("Digite o valor base do golpe %d do Pokemon: ", i+1);
+        scanf("%d", &p.golpe[i].dano);
+    }
     return p;
 }
-
+/*
 //retorna 1 se o hp atual do Pokemon é maior ou igual a 0.
 int estaVivo(Pokemon p){
     if (p.hp >= 0){
@@ -44,6 +45,11 @@ int numeroPokemon(Pokemon p){
     return p.numero;
 }
 
+//retorna o número de golpes de um Pokemon.
+int numeroGolpes(Pokemon p){
+    return p.m;
+}
+
 //simula um ataque do Pokemon p1 ao Pokemon p2 utilizando o golpe m, retornando o dano causado.
 int ataque(Pokemon p1, int m, Pokemon *p2){
     int dano;
@@ -60,3 +66,4 @@ int ataque(Pokemon p1, int m, Pokemon *p2){
 void curaPokemon(Pokemon *p){
     p->hp = p->hp_max;
 }
+*/

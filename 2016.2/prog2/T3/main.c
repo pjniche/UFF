@@ -1,19 +1,27 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "pokemon.h"
 
 int main (void){
-    Pokemon player1, player2;
-    int golpe, movimentos, dano;
+    int golpe, movimentos, dano, n;
     char opcao;
 
+    //main.c pokemon.c funcionais
+    //escolha do numero de pokemon e golpes funcionais.
+
     //Carregando atributos
-    printf("Entre com os atributos do primeiro Pokemon.\n");
-    player1=leituraPokemon();
-    printf("\n");
-    printf("Entre com os atributos do segundo Pokemon.\n");
-    player2=leituraPokemon();
+    printf("Digite o numero total de pokemon: ");
+    scanf("%d", &n);
     printf("\n");
 
+    Pokemon* player=(Pokemon*)malloc(n*sizeof(Pokemon));
+    for (int i;i<n;i++){
+        printf("Digite os atributos do pokemon %d: ", i+1);
+        printf("\n");        
+        player[i]=leituraPokemon();
+    }
+    printf("\n");
+/*
     do {
         //Inicio da batalha
         printf("INICIO DA BATALHA!\n");
@@ -23,7 +31,7 @@ int main (void){
             //Player 1 ataca
             if (estaVivo(player1) == 1){
                 printf("O pokemon %s (#%d) esta atacando.\n", nomePokemon(player1), numeroPokemon(player1));
-                printf("Digite o movimento que ele deve usar (1 ou 2): ");
+                printf("Digite o movimento que ele deve usar: ");
                 scanf("%d", &golpe);
                 dano = ataque(player1, golpe, &player2);
                 printf("Dano causado em %s = %d\n\n", nomePokemon(player2), dano);
@@ -32,7 +40,7 @@ int main (void){
             //Player 2 ataca
             if (estaVivo(player2) == 1){
                 printf("O pokemon %s (#%d) esta atacando.\n", nomePokemon(player2), numeroPokemon(player2));
-                printf("Digite o movimento que ele deve usar (1 ou 2): ");
+                printf("Digite o movimento que ele deve usar: ");
                 scanf("%d", &golpe);
                 dano = ataque(player2, golpe, &player1);
                 printf("Dano causado em %s = %d\n\n", nomePokemon(player1), dano);
@@ -56,6 +64,7 @@ int main (void){
         printf("\n");
 
     } while (opcao != 78);
-
+    free(player); //desalocar a memoria
+*/
     return 0;
 }
