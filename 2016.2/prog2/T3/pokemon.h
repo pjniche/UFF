@@ -14,7 +14,7 @@ typedef struct pokemon{
 
 //faz a leitura dos dados do Pokemon.
 Pokemon leituraPokemon();
-/*
+
 //retorna 1 se o hp atual do Pokemon é maior ou igual a 0.
 int estaVivo(Pokemon p);
 
@@ -32,5 +32,5 @@ int ataque(Pokemon p1, int m, Pokemon *p2);
 
 //restora o hp do pokemon ao máximo.
 void curaPokemon(Pokemon *p);
-*/
+
 #endif

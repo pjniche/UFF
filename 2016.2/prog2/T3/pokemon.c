@@ -24,7 +24,7 @@ Pokemon leituraPokemon(){
     }
     return p;
 }
-/*
+
 //retorna 1 se o hp atual do Pokemon é maior ou igual a 0.
 int estaVivo(Pokemon p){
     if (p.hp >= 0){
@@ -52,12 +52,7 @@ int numeroGolpes(Pokemon p){
 
 //simula um ataque do Pokemon p1 ao Pokemon p2 utilizando o golpe m, retornando o dano causado.
 int ataque(Pokemon p1, int m, Pokemon *p2){
-    int dano;
-    if (m == 1) {
-        dano = (int)(((2*(float)p1.nivel+10)/250)*((float)p1.ataque/(float)p2->defesa)*(float)p1.golpe1.dano+2)*4;
-    } else {
-        dano = (int)(((2*(float)p1.nivel+10)/250)*((float)p1.ataque/(float)p2->defesa)*(float)p1.golpe2.dano+2)*4;
-    }
+    int dano = (int)(((2*(float)p1.nivel+10)/250)*((float)p1.ataque/(float)p2->defesa)*(float)p1.golpe[m-1].dano+2)*4;
     p2->hp = p2->hp - dano;
     return dano;
 }
@@ -66,4 +61,3 @@ int ataque(Pokemon p1, int m, Pokemon *p2){
 void curaPokemon(Pokemon *p){
     p->hp = p->hp_max;
 }
-*/
