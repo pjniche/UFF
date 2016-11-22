@@ -13,8 +13,20 @@ int main(void){
     scanf("%d", &celula);
     printf("Digite o tamanho dos Blocos da MP (Numero de Celulas por Bloco): ");
     scanf("%d", &bloco);
+    if ((float)log2(bloco)!=(int)log2(bloco)){ //se o valor for potencia de 2 entao (float)log2 e (int)log2 serao iguais.
+        printf("ERRO! Tamanho dos Blocos nao e potencia de 2!");
+        return 1;
+    }
+    if (celula%bloco!=0){
+        printf("ERRO! Numero de Celulas e incompativel!");
+        return 1;
+    }
     printf("Digite o numero de linhas da Cache: ");
     scanf("%d", &linha);
+    if ((float)log2(linha)!=(int)log2(linha)){ //se o valor for potencia de 2 entao (float)log2 e (int)log2 serao iguais.
+        printf("ERRO! O numero de Linhas da Cache nao e potencia de 2!");
+        return 1;
+    }
     printf("\n");
 
     printf("Escolha o tipo de mapeamento da Cache\n");
@@ -34,7 +46,7 @@ int main(void){
         printf("Formato da Memoria Cache.\n");
         int i, j;
         for (i=0; i<linha; i++){
-        	printf("Linha %d [ Tag ", i);
+        	printf("Linha %d [ Valido | Tag ", i);
         	for (j=0; j<bloco; j++){
         		printf("| Celula %d ", j);
 			}
@@ -51,7 +63,7 @@ int main(void){
         printf("Formato da Memoria Cache.\n");
         int l, m;
         for (l=0; l<linha; l++){
-        	printf("Linha %d [ Tag ", l);
+        	printf("Linha %d [ Valido | Tag ", l);
         	for (m=0; m<bloco; m++){
         		printf("| Celula %d ", m);
 			}
@@ -64,6 +76,10 @@ int main(void){
         printf("Associativo por Conjuntos\n");
         printf("Digite o numero de Conjuntos: ");
         scanf("%d", &conjunto);
+        if ((float)log2(conjunto)!=(int)log2(conjunto)){ //se o valor for potencia de 2 entao (float)log2 e (int)log2 serao iguais.
+            printf("ERRO! O numero de Conjuntos da Cache nao e potencia de 2!");
+            return 1;
+        }
         printf("Endereco da MP possui %d bits.\n", (int)log2(celula));
         printf("[ Tag = %d bit(s) | Conjunto = %d bit(s) | Celula = %d bit(s) ]\n", (int)log2(celula)-((int)log2(linha/conjunto)+(int)log2(bloco)), (int)log2(linha/conjunto), (int)log2(bloco));
         printf("\n");
@@ -85,7 +101,6 @@ int main(void){
 		printf("Tamanho total da memoria cache = %d bytes", linha*bloco);
         break;
     }
-
     return 0;
 }
 /*
