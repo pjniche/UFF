@@ -88,3 +88,7 @@ int main(void){
 
     return 0;
 }
+/*
+ps: Meus testes foram feitos usando a seguinte configuracao:
+MP de 16 bytes, Blocos de 2 bytes e 4 Linhas de Cache (com Conjuntos de 2).
+*/
