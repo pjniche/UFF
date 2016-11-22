@@ -70,9 +70,9 @@ int main(void){
         printf("Formato da Memoria Cache.\n");
         int n, o, p=0, q=0;
         for (n=0; n<linha; n++){
-        	printf("Linha %d [ Tag ", n);
+        	printf("Linha %d [ Valido | Tag ", n);
         	for (o=0; o<bloco; o++){
-        		printf("| Byte %d ", o);
+        		printf("| Celula %d ", o);
 			}
 			if (p%2==0){
 				printf("] } Conjunto %d\n", q);
