@@ -36,7 +36,7 @@ int main(void){
         for (i=0; i<linha; i++){
         	printf("Linha %d [ Tag ", i);
         	for (j=0; j<bloco; j++){
-        		printf("| Byte %d ", j);
+        		printf("| Celula %d ", j);
 			}
 			printf("]\n");
 		}
@@ -53,7 +53,7 @@ int main(void){
         for (l=0; l<linha; l++){
         	printf("Linha %d [ Tag ", l);
         	for (m=0; m<bloco; m++){
-        		printf("| Byte %d ", m);
+        		printf("| Celula %d ", m);
 			}
 			printf("]\n");
 		}
