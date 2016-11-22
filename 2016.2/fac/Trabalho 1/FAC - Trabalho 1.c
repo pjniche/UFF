@@ -1,10 +1,6 @@
 //UFF - Universidade Federal Fluminense
-
 //Fundamentos de Arquitetura de Computadores
-//Prof.(a): Fernanda Passos
-
 //Trabalho 1
-//Paulo Roberto Niche Ramos Junior
 
 #include<stdio.h>
 #include<stdlib.h>
