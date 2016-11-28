@@ -2,12 +2,12 @@
 #define POKEMON_H
 
 typedef struct move{
-    char nome[100];
+    char* nome;
     int dano;
 }Move;
 
 typedef struct pokemon{
-    char nome[100];
+    char* nome;
     int numero, nivel, ataque, defesa, hp, hp_max, m;
     Move* golpe;
 }Pokemon;

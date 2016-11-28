@@ -6,6 +6,7 @@
 Pokemon leituraPokemon(){
     Pokemon p;
     printf("Digite o nome do Pokemon: ");
+    p.nome=(char*)malloc(100*sizeof(char));
     scanf("%s", p.nome);
     printf("Digite o numero do Pokemon: ");
     scanf("%d", &p.numero);
@@ -16,9 +17,10 @@ Pokemon leituraPokemon(){
     p.hp_max = p.hp;
     printf("Digite o numero de golpes do Pokemon: ");
     scanf("%d", &p.m);
+    p.golpe=(Move*)malloc(p.m*sizeof(Move));
     for (int i=0;i<p.m;i++){
         printf("Digite o nome do golpe %d do Pokemon: ", i+1);
-        scanf("%s", p.golpe[i].nome);
+        scanf("%s", p.golpe[i].nome=(char*)malloc(100*sizeof(char)));
         printf("Digite o valor base do golpe %d do Pokemon: ", i+1);
         scanf("%d", &p.golpe[i].dano);
     }
@@ -36,8 +38,7 @@ int estaVivo(Pokemon p){
 
 //retorna o nome do Pokemon.
 char* nomePokemon(Pokemon p){
-    char* nome = p.nome;
-    return nome;
+    return p.nome;
 }
 
 //retorna o número de um Pokemon.

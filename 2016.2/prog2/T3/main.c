@@ -4,13 +4,13 @@
 
 int main (void){
     int golpe, movimentos, dano, p, p1, p2;
-    char opcao;
+    char* opcao=(char*)malloc(1);
 
     //Carregando atributos
     printf("Digite o numero total de pokemons: ");
     scanf("%d", &p);
     printf("\n");
-    Pokemon* player=(Pokemon*)malloc(p*sizeof(Pokemon)); //<--- alocando memoria
+    Pokemon* player=(Pokemon*)malloc(p*sizeof(Pokemon));
     for (int i=0;i<p;i++){
         printf("Digite os atributos do pokemon %d.\n", i+1);
         player[i]=leituraPokemon();
@@ -58,12 +58,15 @@ int main (void){
         printf("\n");
 
         printf("Deseja simular outra batalha?: ");
-        scanf(" %c", &opcao);
+        scanf(" %c", opcao);
         curaPokemon(&player[p1-1]);
         curaPokemon(&player[p2-1]);
         printf("\n");
 
-    } while (opcao != 78);
+    } while (*opcao != 78);
+
+    free(opcao);
+    free(player);
 
     return 0;
 }
