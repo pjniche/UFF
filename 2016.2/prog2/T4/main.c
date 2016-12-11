@@ -3,14 +3,11 @@
 #include <string.h>
 #include "pokemon.h"
 
-int main (int argv, char*argv[]){
-    int golpe, movimentos, dano, p, p1, p2;
+int main (int argc, char*argv[]){
+    int golpe, movimentos, dano, p1, p2;
     char opcao;
 
     //Carregando atributos
-    printf("Digite o numero total de pokemons: ");
-    scanf("%d", &p);
-    printf("\n");
     Pokemon* player=(Pokemon*)malloc(p*sizeof(Pokemon));
     for (int i=0;i<p;i++){
         printf("Digite os atributos do pokemon %d.\n", i+1);
