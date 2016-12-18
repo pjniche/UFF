@@ -1,31 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "pokemon.h"
 
 //faz a leitura dos dados do Pokemon.
-Pokemon leituraPokemon(){
-    Pokemon p;
-    printf("Digite o nome do Pokemon: ");
-    p.nome=(char*)malloc(100*sizeof(char));
-    scanf("%s", p.nome);
-    printf("Digite o numero do Pokemon: ");
-    scanf("%d", &p.numero);
-    printf("Digite o nivel do Pokemon: ");
-    scanf("%d", &p.nivel);
-    printf("Digite os valores de ataque, defesa e hp do Pokemon: ");
-    scanf("%d %d %d", &p.ataque, &p.defesa, &p.hp);
-    p.hp_max = p.hp;
-    printf("Digite o numero de golpes do Pokemon: ");
-    scanf("%d", &p.m);
-    p.golpe=(Move*)malloc(p.m*sizeof(Move));
-    for (int i=0;i<p.m;i++){
-        printf("Digite o nome do golpe %d do Pokemon: ", i+1);
-        scanf("%s", p.golpe[i].nome=(char*)malloc(100*sizeof(char)));
-        printf("Digite o valor base do golpe %d do Pokemon: ", i+1);
-        scanf("%d", &p.golpe[i].dano);
+Pokemon leituraPokemon(FILE *f){
+    Pokemon* p=(Pokemon*)malloc(sizeof(Pokemon));
+    fscanf(f,"%s", p->nome=(char*)malloc(100*sizeof(char)));
+    fscanf(f,"%d", &p->numero);
+    fscanf(f,"%d", &p->nivel);
+    fscanf(f,"%d %d %d", &p->ataque, &p->defesa, &p->hp);
+    p->hp_max = p->hp;
+    fscanf(f,"%d", &p->m);
+    p->golpe=(Move*)malloc(p->m*sizeof(Move));
+    for (int i=0;i<p->m;i++){
+        fscanf(f,"%s", p->golpe[i].nome=(char*)malloc(100*sizeof(char)));
+        fscanf(f,"%d", &p->golpe[i].dano);
     }
-    return p;
+    return *p;
+    desalocaPokemon(p);
+    free(p);
 }
 
 //Retorna 1 se o hp atual do Pokemon é maior ou igual a 0.
@@ -66,5 +59,9 @@ void curaPokemon(Pokemon *p){
 
 //Desaloca todos os ponteiros do Pokemon.
 void desalocaPokemon(Pokemon *p){
-    //falta implementar
+    for (int i=0;i<p->m;i++){
+        free(p->golpe[i].nome);
+    }
+    free(p->golpe);
+    free(p->nome);
 }
