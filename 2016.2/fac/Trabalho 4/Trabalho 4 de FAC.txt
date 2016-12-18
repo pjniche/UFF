@@ -11,7 +11,7 @@
 ;reg7 contador da divisao
 ;reg10 C[0]
 
-;inicia na posição 0 da memoria
+;inicia na posicao 0 da memoria
 addi $0, $0, 0
 
 addi $3, $3, 0 ;<<< substituir o zero pelo valor de x aqui!
