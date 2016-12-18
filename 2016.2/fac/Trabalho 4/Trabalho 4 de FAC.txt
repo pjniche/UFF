@@ -1,6 +1,6 @@
 ;Trabalho 4 - FAC
 
-;índice de registradores
+;indice de registradores
 ;reg0 posição inicial
 ;reg1 constante 1
 ;reg2 n
