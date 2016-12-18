@@ -1,5 +1,4 @@
 ;Trabalho 4 - FAC
-;Paulo Roberto Niche Ramos Júnior
 
 ;índice de registradores
 
