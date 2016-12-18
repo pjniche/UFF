@@ -1,8 +1,51 @@
 ;Trabalho 4 - FAC
 
 ;índice de registradores
+;reg0 posição inicial
+;reg1 constante 1
+;reg2 n
+;reg3 x
+;reg4 x*3+1
+;reg5 resto
+;reg6 constante 2
+;reg7 contador da divisao
+;reg10 C[0]
 
-;inicia na posição X da memória
+;inicia na posição 0 da memoria
+addi $0, $0, 0
+
+addi $3, $3, 0 ;<<< substituir o zero pelo valor de x aqui!
+addi $10, $3, 0 ;C[0] recebe o valor de x
+addi $2, $2, 1 ;n recebe 1
+addi $1, $1, 1 ;constante 1
+
+ENQUANTO:
+beq $3, $1, FIM ;se x = 1 finaliza o programa
+
+SE_MOD2:
+and $5, $3, $1 ;x mod 2
+beq $1, $5, ENTAO ;se x mod 2 = 0 entao
+
+SENAO:
+add $4, $3, $3 ;reg4 recebe x+x
+add $4, $4, $3 ;reg4 recebe (2*x)+x
+addi $4, $4, 1 ;reg4 recebe (3*x)+1
+addi $3, $4, 0 ;reg3 recebe o valor de reg4
+FIM_SE
+
+ENTAO:
+DIV_2:
+sub $3, $3, $6 ;subtracao sucessiva por 2
+addi $7, $7, 1 ;incrementa reg7 em 1
+beq $3, $0, FIM_DIV ;se reg3 = 0 termina a divisao
+DIV_2
+FIM_DIV:
+addi $3, $7, 0 ;reg3 recebe o valor de reg7 (resultado da divisao)
+
+FIM_SE:
+sw $3, $10, $2 ;C[n] recebe x
+addi $2, $2, 1 ;n recebe n + 1
+ENQUANTO
 
 FIM:
-j FIM ;loop infinito no final do programa
+j FIM ;fim do programa
