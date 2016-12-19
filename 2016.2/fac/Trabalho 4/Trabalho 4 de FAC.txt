@@ -18,6 +18,7 @@ addi $3, $3, 0 ;<<< substituir o zero pelo valor de x aqui!
 addi $10, $3, 0 ;C[0] recebe o valor de x
 addi $2, $2, 1 ;n recebe 1
 addi $1, $1, 1 ;constante 1
+addi $6, $6, 2 ;constante 2
 
 ENQUANTO:
 beq $3, $1, FIM ;se x = 1 finaliza o programa
