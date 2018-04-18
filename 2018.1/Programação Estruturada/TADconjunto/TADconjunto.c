@@ -23,7 +23,6 @@ int setCria(char setID){
     int ix = setID - 'A';
     if (vetValidos[ix] == TRUE)
         return FALSE; // conjunto ja existe
-
     vetValidos[ix] = TRUE;
     return TRUE;
 }
@@ -31,10 +30,8 @@ int setCria(char setID){
 int setPertence(char setID, int element){
     int ix = setID - 'A', c;
 
-    if (vetValidos[ix] == FALSE){
-        printf("\nconjunto %c nao existente\n", setID);
-        return FALSE;
-    }
+    if (setTeste(setID)==FALSE) return FALSE;
+
     int total = vetTotais[ix];
     for(c=0;c<total;c++)
         if (vetConjuntos[ix][c] == element){
@@ -49,7 +46,6 @@ int setAdiciona(char setID, int element){
     total daquele conjunto ++
     */
     int ix = setID - 'A', c;
-
 
     if (vetValidos[ix] == TRUE){
         int total = vetTotais[ix];
@@ -70,22 +66,19 @@ int setAdiciona(char setID, int element){
     return TRUE;
 }
 
-int setUniao(char setID1, char setID2,
-             char setID3){
+int setUniao(char setID1, char setID2, char setID3){
     int ix1 = setID1-'A', ix2 = setID2-'A';
 
     // alo alunos , favor refatorar, dar uma melhorada colocando uma funcao de teste
-    if (vetValidos[ix1] == FALSE){
-        printf("\nconjunto %c nao existente\n", setID1);
-        return FALSE;
-    }
-    if (vetValidos[ix2] == FALSE){
-        printf("\nconjunto %c nao existente\n", setID2);
-        return FALSE;
-    }
-    // testar se o 3o conjunto existe ou nao
+    if (setTeste(setID1)==FALSE) return FALSE;
+    if (setTeste(setID2)==FALSE) return FALSE;
 
-    setCria(setID3); // crio o conjunto 3
+    // testar se o 3o conjunto existe ou nao
+    if (setTeste(setID3)==FALSE){
+        printf("     criando conjunto %c...\n", setID3);
+        setCria(setID3); // crio o conjunto 3
+    }
+
     int total, c;
 
     // adiciono elementos do primeiro conjunto
@@ -101,15 +94,47 @@ int setUniao(char setID1, char setID2,
     return TRUE;
 }
 
+int setIntersecao(char setID1, char setID2, char setID3){
+    int ix1 = setID1-'A', ix2 = setID2-'A';
+
+    // testar se o 1o e 2o conjunto existem ou nao
+    if (setTeste(setID1)==FALSE) return FALSE;
+    if (setTeste(setID2)==FALSE) return FALSE;
+
+    // testar se o 3o conjunto existe ou nao
+    if (setTeste(setID3)==FALSE){
+        printf("     criando conjunto %c...\n", setID3);
+        setCria(setID3); // crio o conjunto 3
+    }
+
+    // compara cada elemento i de A com todos elementos z de B
+    for (int i=0;i<vetTotais[ix1];i++){
+        for (int z=0;z<vetTotais[ix2];z++){
+            if (vetConjuntos[ix1][i]==vetConjuntos[ix2][z]){
+                setAdiciona(setID3, vetConjuntos[ix1][i]);
+            }
+        }
+    }
+    return TRUE;
+}
+
 void setImprime(char setID){
     int ix = setID - 'A', c;
 
-    if (vetValidos[ix] == FALSE){
-        printf("\nconjunto %c nao existente\n", setID);
-        return FALSE;
-    }
+    if (setTeste(setID)==FALSE) return FALSE;
+
     int total = vetTotais[ix];
     printf("\n");
     for(c=0;c<total;c++)
         printf("%i ", vetConjuntos[ix][c]);
 }
+
+int setTeste(char setID){
+    int ix=setID-'A';
+    if (vetValidos[ix]==FALSE){
+        printf("\n --- conjunto %c nao existente!\n", setID);
+        return FALSE;
+    }
+    return TRUE;
+}
+
