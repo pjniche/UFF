@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1522762899 source:c:\aulas\proflek\tadconjunto\main.c
+	<stdio.h>
+	<stdlib.h>
+	"TADconjunto.h"
+
+1522762899 c:\aulas\proflek\tadconjunto\tadconjunto.h
+
+1522935174 source:c:\aulas\kozovits\tadconjunto\main.c
+	<stdio.h>
+	<stdlib.h>
+	"TADconjunto.h"
+
+1522935950 c:\aulas\kozovits\tadconjunto\tadconjunto.h
+
+1522935017 source:c:\aulas\kozovits\tadconjunto\tadconjunto.c
+	<stdio.h>
+	<stdlib.h>
+	"TADconjunto.h"
+
