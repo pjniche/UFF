@@ -14,6 +14,7 @@ int main(){
     setAdiciona('A', 7);
     printf("\n --- conjunto A\n");
     setImprime('A');
+    printf("\n");
 
     setAdiciona('B', 7);
     setAdiciona('B', 5);
@@ -22,12 +23,14 @@ int main(){
     setAdiciona('B', 9);
     printf("\n --- conjunto B\n");
     setImprime('B');
+    printf("\n");
 
     setUniao('A', 'B', 'C');
-    printf("\n --- conjunto C uniao A e B\n");
+    printf("\n --- conjunto C = uniao de A e B\n");
     setImprime('C');
+    printf("\n");
     setIntersecao('A', 'B', 'D');
-    printf("\n --- conjunto D intersecao A e B\n");
+    printf("\n --- conjunto D = intersecao de A e B\n");
     setImprime('D');
     printf("\n");
     return 0;
