@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1525352784 source:c:\aulas\kozovits\tadlistacircular\listacircular.c
+	"ListaCircular.h"
+
+1525352776 c:\aulas\kozovits\tadlistacircular\listacircular.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<math.h>
+
