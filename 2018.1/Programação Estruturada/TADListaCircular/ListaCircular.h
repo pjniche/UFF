@@ -10,7 +10,6 @@
 #define TRUE 1
 #define FALSE 0
 
-
 // vamos fazer uma lista circular de
 // super herois
 typedef struct hero {
@@ -18,18 +17,19 @@ typedef struct hero {
     int poder; // 1 a 5
 } Hero;
 
+void menu(void);// menu principal
 int inicializa(void);
 int finaliza(void);
-int entrar(Hero h);// adiciona apos elemento corrente
+int entrar(void);// adiciona apos elemento corrente
 // e torna o que entrou o novo corrente
 // como exercicio o aluno deve entrar mantendo a
 // lista circular ordenada
 
-int retirar(Hero *h);// retira o elemento corrente e posiciona
+int retirar(void);// retira o elemento corrente e posiciona
 // o ponteiro corrente para o proximo elemento
 // ou NULL se nao tiver mais ninguem
 
 int proximo(void);// posiciona o corrente no proximo elemento da lista
-
+int vazia(void);// verifica se a lista esta vazia
 
 #endif // LISTACIRCULAR_H_INCLUDED
