@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1526776714 source:c:\users\paulo\documents\github\uff\2018.1\programação estruturada\tadlistacircularpersistente\main.c
+	"TADListaCircularPersistente.h"
+
+1526522075 c:\users\paulo\documents\github\uff\2018.1\programação estruturada\tadlistacircularpersistente\tadlistacircularpersistente.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	<math.h>
+
+1526933464 source:c:\users\paulo\documents\github\uff\2018.1\programação estruturada\tadlistacircularpersistente\tadlistacircularpersistente.c
+	"TADListaCircularPersistente.h"
+
