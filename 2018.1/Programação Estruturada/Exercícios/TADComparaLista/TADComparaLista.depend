@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1527126014 source:c:\users\paulo\documents\github\uff\2018.1\programação estruturada\exercícios\tadcomparalista\main.c
+	"TADComparaLista.h"
+
+1527125439 c:\users\paulo\documents\github\uff\2018.1\programação estruturada\exercícios\tadcomparalista\tadcomparalista.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	<math.h>
+
+1527125950 source:c:\users\paulo\documents\github\uff\2018.1\programação estruturada\exercícios\tadcomparalista\tadcomparalista.c
+	"TADComparaLista.h"
+
