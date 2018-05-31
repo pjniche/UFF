@@ -1,0 +1,7 @@
+bia 20
+carlos 21
+maria 20
+ana 18
+carlos 10
+monica 15
+paulo 30

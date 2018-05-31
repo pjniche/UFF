@@ -13,3 +13,14 @@
 1527125950 source:c:\users\paulo\documents\github\uff\2018.1\programação estruturada\exercícios\tadcomparalista\tadcomparalista.c
 	"TADComparaLista.h"
 
+1527284379 source:c:\users\paulo\documents\github\uff\2018.1\programação estruturada\exercícios\tadunirlistas\main.c
+	"TADUnirListas.h"
+
+1527125439 c:\users\paulo\documents\github\uff\2018.1\programação estruturada\exercícios\tadunirlistas\tadunirlistas.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	<math.h>
+
