@@ -121,6 +121,7 @@ int ordena(){
                     teste1 = teste2 = TRUE;
                 }
             }
+            //Posiciona os ponteiros.
             if (teste2 == TRUE){
                 printf("Debug: teste2 TRUE\n\n");
                 aux1 = p1->anterior;

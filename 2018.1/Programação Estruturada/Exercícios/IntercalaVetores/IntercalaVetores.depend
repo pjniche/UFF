@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1527819679 source:c:\users\paulo\documents\github\uff\2018.1\programação estruturada\exercícios\intercalavetores\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	<math.h>
+
