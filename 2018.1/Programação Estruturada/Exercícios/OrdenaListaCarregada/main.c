@@ -83,15 +83,15 @@ int ordena(){
     }
     //TESTE1 e TESTE2 sinalizam se houve troca.
     while (p1 != NULL){
-        printf("Debug: p1 != NULL +++++\n");
+        //printf("Debug: p1 != NULL +++++\n");
         teste1 = FALSE;
         while (p2 != NULL){
-            printf("Debug: p2 != NULL -----\n");
+            //printf("Debug: p2 != NULL -----\n");
             teste2 = FALSE;
             if (strcmp(p1->a.nome, p2->a.nome) > 0){
                 //trocar.
-                printf("Debug: %s > %s\n", p1->a.nome, p2->a.nome);
-                printf("Debug: Invertendo %s e %s\n", p1->a.nome, p2->a.nome);
+                //printf("Debug: %s > %s\n", p1->a.nome, p2->a.nome);
+                //printf("Debug: Invertendo %s e %s\n", p1->a.nome, p2->a.nome);
                 p2->proximo = p1;
                 p2->anterior = aux1;
                 if (aux1 != NULL){
@@ -106,8 +106,8 @@ int ordena(){
             } else if (strcmp(p1->a.nome, p2->a.nome) == 0){
                 if (p1->a.idade > p2->a.idade){
                     //trocar.
-                    printf("Debug: %s == %s, %i > %i\n", p1->a.nome, p2->a.nome, p1->a.idade, p2->a.idade);
-                    printf("Debug: Invertendo %s e %s\n", p1->a.nome, p2->a.nome);
+                    //printf("Debug: %s == %s, %i > %i\n", p1->a.nome, p2->a.nome, p1->a.idade, p2->a.idade);
+                    //printf("Debug: Invertendo %s e %s\n", p1->a.nome, p2->a.nome);
                     p2->proximo = p1;
                     p2->anterior = aux1;
                     if (aux1 != NULL){
@@ -123,7 +123,7 @@ int ordena(){
             }
             //Posiciona os ponteiros.
             if (teste2 == TRUE){
-                printf("Debug: teste2 TRUE\n\n");
+                //printf("Debug: teste2 TRUE\n\n");
                 aux1 = p1->anterior;
                 p2 = p1->proximo;
                 if (p2 != NULL){
@@ -132,7 +132,7 @@ int ordena(){
                     aux2 = NULL;
                 }
             } else {
-                printf("Debug: teste2 FALSE\n\n");
+                //printf("Debug: teste2 FALSE\n\n");
                 p1 = p1->proximo;
                 aux1 = p1->anterior;
                 p2 = p1->proximo;
@@ -142,11 +142,11 @@ int ordena(){
                     aux2 = NULL;
                 }
             }
-            getch();
+            //getch();
         }
         //Se houver troca, percorre a lista novamente.
         if (teste1 == TRUE){
-            printf("Debug: teste1 TRUE\n\n");
+            //printf("Debug: teste1 TRUE\n\n");
             p1 = inicio;
             aux1 = p1->anterior;
             p2 = p1->proximo;
@@ -156,12 +156,12 @@ int ordena(){
                 aux2 = NULL;
             }
         } else {
-            printf("Debug: teste1 FALSE\n\n");
+            //printf("Debug: teste1 FALSE\n\n");
             p1 = NULL;
         }
     }
-    printf("Debug: return TRUE\n");
-    getch();
+    //printf("Debug: return TRUE\n");
+    //getch();
     return TRUE;
 }
 
@@ -196,7 +196,7 @@ int exibe(){
     }
     printf(" => ");
     while (p1 != NULL){
-        printf("[ %s ]->", p1->a.nome);
+        printf("[ %s | %i ]->", p1->a.nome, p1->a.idade);
         p1 = p1->proximo;
     }
     printf("\n-------------------------------------------------\n");

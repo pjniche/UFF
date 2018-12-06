@@ -20,10 +20,10 @@ Aluno v1[] = {
 };
 Aluno v2[] = {
     {"ana", 18},
-    {"carlos", 10},
+    {"carlos", 20},
     {"carlos", 21},
     {"monica", 15},
-    {"paulo", 30}
+    {"pedro", 30}
 };
 Aluno v3[] = {
     {"", -1}
@@ -38,7 +38,7 @@ int exibeStruct(Aluno v[], int n){
     }
     printf(" => ");
     for (int i = 0; i < n; i++){
-        printf("[ %s %i ]", v[i].nome, v[i].idade);
+        printf("[ %s | %i ]", v[i].nome, v[i].idade);
     }
     printf("\n");
     return TRUE;
