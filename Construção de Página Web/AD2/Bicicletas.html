@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pedalarte</title>
+    <base target="_blank" />
+    <script lang="Javascript" src="Pedalarte.js"></script>
+    <link rel="stylesheet" type="text/css" href="Pedalarte.css">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <header>
+        <address class="ender">
+            Av. Tour de France, 1903
+            <br> Tel: (21) 8765-4321
+            <br>
+            <a href="mailto:contato@pedalarte.com.br">contato@pedalarte.com.br</a>
+        </address>
+        <img class="imgLogo" src="Imagens/PedalarTopo.png">
+        </span>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="Pedalarte.html">Apresentação</a>
+            </li>
+            <li>
+                <a href="Pecas.html">Peças</a>
+            </li>
+            <li>
+                <a href="Bicicletas.html">Bicicletas</a>
+            </li>
+            <li>
+                <a href="Cadastro.html">Cadastro</a>
+            </li>
+            <li>
+                <a href="Compras.html">Compras</a>
+            </li>
+        </ul>
+    </nav>
+    <section>
+        <table class="tabBike">
+            <tr>
+                <th colspan="4" class="titulo">Bicicletas</th>
+            </tr>
+            <tr>
+                <td class="linTH">Tipo</td>
+                <td class="linTH">Modelo</td>
+                <td colspan="2" class="linTH">
+                    <a id="nomeBike"></a>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="colTH">ARO 16</td>
+                <td>
+                    <a id="Bike1" href="javascript:modeloBike('Bike1', 'nomeBike', 'imagemBike', 'precoBike')">MTB VOLT 1.6 PT/AM</a>
+                </td>
+                <td rowspan="4" colspan="2">
+                    <img class="imgBike" src="Imagens/Vazio.jpg" id="imagemBike">
+                    <p class="precoBikes" id="precoBike"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a id="Bike2" href="javascript:modeloBike('Bike2', 'nomeBike', 'imagemBike', 'precoBike')">CALOI CECI BRANCA</a>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="colTH">ARO 26</td>
+                <td><a id="Bike3" href="javascript:modeloBike('Bike3', 'nomeBike', 'imagemBike', 'precoBike')">POTY Branca/Vermelho</a></td>
+            </tr>
+            <tr>
+                <td><a id="Bike4" href="javascript:modeloBike('Bike4', 'nomeBike', 'imagemBike', 'precoBike')">CALOI Sport T19 V21</a></td>
+            </tr>
+        </table>
+    </section>
+</body>
+
+</html>

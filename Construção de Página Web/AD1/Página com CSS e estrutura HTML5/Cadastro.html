@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="Estilo.css">
+    <title>Pedalarte</title>
+</head>
+
+<body>
+    <header>
+        <img class="imgLogo" src="Imagens/PedalarTopo.png">
+        <address class="ender">
+            Av. Tour de France, 1903
+            <br> Tel: (21) 8765-4321
+            <br>
+            <a href="mailto:contato@pedalarte.com.br">contato@pedalarte.com.br</a>
+        </address>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="Pedalarte.html" target="blank">Apresentação</a>
+            </li>
+            <li>
+                <a href="Pecas.html" target="blank">Peças</a>
+            </li>
+            <li>
+                <a href="Bicicletas.html" target="blank">Bicicletas</a>
+            </li>
+            <li>
+                <a href="Cadastro.html" target="blank">Cadastro</a>
+            </li>
+            <li>
+                <a href="Compras.html" target="blank">Compras</a>
+            </li>
+        </ul>
+    </nav>
+    <section>
+        <h3>Cadastro</h3>
+        <form class="divLinha">
+            <fieldset>
+                <legend>Identificação</legend>
+                <div>E-mail:
+                    <input type="email" class="inpGrande">
+                </div>
+                <div>
+                    Senha:
+                    <input type="password" class="inpMedio"> Confirme:
+                    <input type="password" class="inpMedio">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+                Nome: <input type="text" class="inpGrande"><br>
+                Endereço: <textarea class="inpGrande"></textarea><br>
+                Telefone: <input type="number" class="inpMedio">
+                Celular: <input type="number" class="inpMedio">
+                <fieldset class="fsEsq">
+                    <legend>Nascimento:</legend>
+                    <input type="number" value="1" min="1" max="30" class="numDD"> /
+                    <input type="number" value="1" min="1" max="12" class="numDD"> /
+                    <input type="number" value="1980" min="1920" max="2000" class="numQD">
+                </fieldset>
+                <fieldset class="fsDir">
+                    <legend>Sexo:</legend>
+                    <input type="radio" value="Masculino" checked>Masculino
+                    <input type="radio" value="Feminino">Feminino
+                </fieldset>
+            </fieldset>
+            <div class="botoes">
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Limpar">
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>

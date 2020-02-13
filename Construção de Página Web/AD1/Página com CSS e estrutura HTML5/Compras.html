@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="Estilo.css">
+    <title>Pedalarte</title>
+</head>
+
+<body>
+    <header>
+        <img class="imgLogo" src="Imagens/PedalarTopo.png">
+        <address class="ender">
+            Av. Tour de France, 1903
+            <br> Tel: (21) 8765-4321
+            <br>
+            <a href="mailto:contato@pedalarte.com.br">contato@pedalarte.com.br</a>
+        </address>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="Pedalarte.html" target="blank">Apresentação</a>
+            </li>
+            <li>
+                <a href="Pecas.html" target="blank">Peças</a>
+            </li>
+            <li>
+                <a href="Bicicletas.html" target="blank">Bicicletas</a>
+            </li>
+            <li>
+                <a href="Cadastro.html" target="blank">Cadastro</a>
+            </li>
+            <li>
+                <a href="Compras.html" target="blank">Compras</a>
+            </li>
+        </ul>
+    </nav>
+    <section>
+        <h3>Compras</h3>
+        <form>
+            <fieldset>
+                <legend>Identificação</legend>
+                <div>
+                    E-mail: <input type="email" class="inpEmail">
+                    Senha: <input type="password" class="inpMedio">
+                </div>
+                <div class="preco">Se você ainda não tem cadastro clique aqui!</div>
+            </fieldset>
+            <fieldset>
+                <legend>Lista de Compras e Pagamento</legend>
+                <div class="fsDirCompras">
+                    <textarea cols="26" rows="10"></textarea><br>
+                    Valor: R$ <input type="number" class="inpMedio">
+                </div>
+                <div class="linhaCompras">
+                    Produtos:<br>
+                    <select>
+                        <option>-----</option>
+                        <optgroup label="Guidom">
+                            <option>Alumínio CB Reforçadp Polido</option>
+                            <option>Alumínio Speed 31,8 X 420MM</option>
+                        </optgroup>
+                        <optgroup label="Selim">
+                            <option>RAD 7 Comfort</option>
+                            <option>SERFAS E-GEL DDMD-200</option>
+                        </optgroup>
+                        <optgroup label="Pedal">
+                            <option>Inglês Alumínio</option>
+                        </optgroup>
+                        <optgroup label="Bicicleta">
+                            <option>MTB A16 VOLT 1.6 PT/AM</option>
+                            <option>CALOI A16 CECI BRANCA</option>
+                            <option>POTY A26 Branca/Vermelho</option>
+                            <option>CALOI A26 Sport T19 V21 Marchas</option>
+                        </optgroup>
+                    </select>
+                    <input type="submit" value="Comprar">
+                </div>
+                <fieldset class="fsEsqCompras">
+                    <legend>Dados do Cartão</legend>
+                    <fieldset>
+                        <legend>Bandeira:</legend>
+                        <input type="radio" value="Visa" checked>Visa
+                        <input type="radio" value="Master">Master
+                        <input type="radio" value="Amex">Amex
+                    </fieldset>
+                    <div>Validade:
+                        <input type="number" value="1" min="1" max="12" class="numDD"> /
+                        <input type="number" value="2018" min="2018" max="2026" class="numQD">
+                    </div>
+                    <div>Número:
+                        <input type="number">
+                    </div>
+                </fieldset>
+            </fieldset>
+            <div class="botoes">
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Limpar">
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>
