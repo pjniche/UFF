@@ -1,0 +1,13 @@
+Descrição da atividade: 
++ Propor uma aplicação de rede do tipo cliente-servidor usando TCP ou UDP. 
++ Implementar e demonstrar a sua aplicação. 
+
+Data para Entrega: 27 de novembro de 2020
+
+OBS: Esta atividade é opcional.
+
+Na aula VAS-2020-10-14-RedesI demonstramos como implementar clientes e servidores TCP e UDP.
+O código gerado na aula está disponível em anexo.
+Esta atividade vale até 1,0 ponto na média final da disciplina.
+
+Esta atividade é opcional.
