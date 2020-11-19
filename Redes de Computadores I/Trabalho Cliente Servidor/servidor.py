@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import socket
 
 HOST = 'localhost'
@@ -13,7 +11,7 @@ print('Aguardando conexão com um cliente')
 conn, ender = s.accept()
 
 print('Conectado em', ender)
-while true:
+while True:
     data = conn.recv(1024)
     if not data:
         print('Fechando conexão')
