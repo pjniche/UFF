@@ -1,11 +1,16 @@
-import socket
+from socket import *
 
 HOST = '127.0.0.1'
-PORT = 50000
+PORT = 55555
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((HOST, PORT))
-s.sendall(str.encode('Bom dia!'))
-data = s.recv(1024)
+#SOCK_STREAM = TCP / SOCK_DGRAM = UDP
+c = socket(AF_INET, SOCK_STREAM)
+#Conecta cliente ao servidor
+c.connect((HOST, PORT))
 
-print('Mensagem enviada:', data.decode())
+#Loop de envio de mensagens
+while True:
+    #Usuário digita mensagem
+    msg = input("Digite: ")
+    #Cliente envia mensagem codificada em bytes
+    c.send(msg.encode())

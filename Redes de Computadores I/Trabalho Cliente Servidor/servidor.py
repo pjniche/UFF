@@ -1,7 +1,9 @@
-import socket
+from socket import *
 
 HOST = 'localhost'
-PORT = 99995
+PORT = 55555
+
+print(HOST, PORT)
 
 #SOCK_STREAM = TCP / SOCK_DGRAM = UDP
 s = socket(AF_INET, SOCK_STREAM)
@@ -13,7 +15,8 @@ s.listen(1)
 #Loop de recebimento de mensagens
 while True:
     con, adr = s.accept()
-    #Tamanho permitido de mensagem 1024bytes
-    msg = con.recv(1024)
-    #Decodifica a mensagem de bytes para algo legível
-    print(msg = msg.decode())
+    while True:
+        #Tamanho permitido de mensagem 1024bytes
+        msg = con.recv(1024)
+        #Decodifica a mensagem de bytes para algo legível
+        print("Mensagem recebida: ", msg.decode())
