@@ -10,7 +10,7 @@ s = socket(AF_INET, SOCK_STREAM)
 #Atribui o host a uma porta específica
 s.bind((HOST, PORT))
 #Quantos clientes o servidor pode conectar
-s.listen(1)
+s.listen(5)
 
 #Loop de recebimento de mensagens
 while True:
