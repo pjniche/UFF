@@ -1,20 +1,19 @@
 import socket
 
 HOST = 'localhost'
-PORT = 50000
+PORT = 99995
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#SOCK_STREAM = TCP / SOCK_DGRAM = UDP
+s = socket(AF_INET, SOCK_STREAM)
+#Atribui o host a uma porta específica
 s.bind((HOST, PORT))
-s.listen()
+#Quantos clientes o servidor pode conectar
+s.listen(1)
 
-print('Aguardando conexão com um cliente')
-conn, ender = s.accept()
-
-print('Conectado em', ender)
+#Loop de recebimento de mensagens
 while True:
-    data = conn.recv(1024)
-    if not data:
-        print('Fechando conexão')
-        conn.close()
-        break
-    conn.sendall(data)
+    con, adr = s.accept()
+    #Tamanho permitido de mensagem 1024bytes
+    msg = con.recv(1024)
+    #Decodifica a mensagem de bytes para algo legível
+    print(msg = msg.decode())
