@@ -1,4 +1,4 @@
 # uff-si
-UFF - Graduação em Sistemas de Informação
+Universidade Federal Fluminense
 <br>
-Material dos exercícios (não todos) feitos durante as aulas.
+Graduação em Sistemas de Informação
