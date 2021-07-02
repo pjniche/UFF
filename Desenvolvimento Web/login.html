@@ -28,13 +28,13 @@
 		<!-- Conteúdo aqui -->
 		<form>
 			<div class="form-group">
-				<label for="nome">Nome</label>
-			<input type="nome" class="form-control" id="nome" placeholder="Seu nome">
+				<label for="cpf">CPF</label>
+			<input type="text" class="cpf" id="cpf" placeholder="Seu CPF">
 		  </div>
 		  
 		  <div class="form-group">
-			<label for="email">Endereço de email</label>
-			<input type="email" class="form-control" id="email" placeholder="Seu email">
+			<label for="senha">Senha</label>
+			<input type="password" class="form-control" id="senha" placeholder="Sua senha">
 		  </div>
   
 		  <button type="submit" class="btn btn-primary">Enviar</button>
@@ -45,11 +45,25 @@
 	<script src="jquery-3.4.1.min.js">
 
 	</script>
+	<script src="jquery.mask.min.js">
+	
+	</script>
 	<script src="popper.min.js">
 
 	</script>
 	<script src="js/bootstrap.min.js">
 
+	</script>
+	
+	<script>
+		$(document).ready(function(){
+		   $('.date').mask('00/00/0000');
+		   $('.cep').mask('00000-000');
+		   $('.cpf').mask('000.000.000-00', {reverse: true});
+		   $('.money2').mask("#.##0,00", {reverse: true});
+		   $('.phone_with_ddd').mask('(00) 0000-0000');
+
+		});
 	</script>
 </body>
 
