@@ -39,11 +39,11 @@ and open the template in the editor.
         <form>
             <div class="mb-3">
                 <label for="Id" class="form-label">ID*</label>
-                <input type="text" class="form-control" id="id" placeholder="Digite o ID da categoria." required>
+                <input type="number" class="form-control" maxlength="11" id="id" placeholder="Digite o ID da categoria." required>
             </div>
             <div class="mb-3">
                 <label for="Descrição" class="form-label">Descrição</label>
-                <input type="text" class="form-control" id="descrição"
+                <input type="text" class="form-control" maxlength="20" id="descrição"
                     placeholder="Escreva uma breve descrição para a categoria.">
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
