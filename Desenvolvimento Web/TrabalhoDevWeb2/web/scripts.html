@@ -1,0 +1,20 @@
+<!-- JavaScript (Opcional) -->
+<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+<script src="jquery-3.4.1.min.js"></script>
+<script src="jquery.mask.min.js"></script>
+<script src="assets/popper/popper.min.js"></script>
+<script src="assets/bootstrap/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.date').mask('00/00/0000');
+        $('.cep').mask('00000-000');
+        $('.cpf').mask('000.000.000-00', {
+            reverse: true
+        });
+        $('.money2').mask("#.##0,00", {
+            reverse: true
+        });
+        $('.phone_with_ddd').mask('(00) 0000-0000');
+    });
+</script>

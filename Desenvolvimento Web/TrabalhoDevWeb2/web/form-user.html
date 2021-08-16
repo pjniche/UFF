@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <title>Trabalho DevWeb – 2021.1</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Conteúdo aqui -->
+        <h4>Cadastrar novo usuário</h4>
+        <form>
+            <div class="mb-3">
+                <label for="Nome" class="form-label">Nome</label>
+                <input type="text" maxlength="20" class="form-control" id="nome" placeholder="Digite seu nome.">
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control cpf" id="cpf" placeholder="Ex: xxx.xxx.xxx-xx">
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" maxlength="255" class="form-control" id="senha" placeholder="Digite a sua senha.">
+            </div>
+            <div class="form-group">
+                <label for="suspenso">Suspenso?</label>
+                <input type="text" maxlength="1" class="form-control" id="suspenso"
+                    placeholder="'S' para Suspenso ou 'N' para Não Suspenso.">
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+
+        <!-- JavaScript (Opcional) -->
+        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+        <script src="jquery-3.4.1.min.js">
+
+        </script>
+        <script src="jquery.mask.min.js">
+
+        </script>
+        <script src="popper.min.js">
+
+        </script>
+        <script src="js/bootstrap.min.js">
+
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('.date').mask('00/00/0000');
+                $('.cep').mask('00000-000');
+                $('.cpf').mask('000.000.000-00', {
+                    reverse: true
+                });
+                $('.money2').mask("#.##0,00", {
+                    reverse: true
+                });
+                $('.phone_with_ddd').mask('(00) 0000-0000');
+
+            });
+        </script>
+</body>
+
+</html>
