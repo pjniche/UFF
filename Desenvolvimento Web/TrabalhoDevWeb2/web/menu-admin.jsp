@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Menu de navegacao apos logado no sistema -->
 <p>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -9,13 +10,13 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
         			<li class="nav-item">
-          				<a class="nav-link" href="form-admin.html">Adicionar Admin</a>
+          				<a class="nav-link" href="Controller_Admin?option=adicionar">Adicionar Administrador</a>
         			</li>
         			<li class="nav-item">
-          				<a class="nav-link" href="form-user.html">Adicionar Usuario</a>
+          				<a class="nav-link" href="form-user.jsp">Adicionar Usuário</a>
         			</li>
         			<li class="nav-item">
-          				<a class="nav-link" href="form-category.html">Adicionar Categoria</a>
+          				<a class="nav-link" href="form-category.jsp">Adicionar Categoria</a>
         			</li>
 					<li class="nav-item">
           				<a class="nav-link" href="#">Logout</a>

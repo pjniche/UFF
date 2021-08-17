@@ -13,7 +13,7 @@
             <!-- Conteúdo aqui -->
 		    <h3>Acessar o Sistema</h3>
 		    <form method="POST" action="ValidarLogin" name="ValidaForm">
-                <input type="hidden" id="id">
+                <input type="hidden" maxlength="11" id="id" value="">
 			    
                 <div class="form-group">
 				    <label for="cpf">CPF</label>
@@ -25,7 +25,7 @@
 				    <input type="password" maxlength="255" class="form-control" id="senha" placeholder="Digite a sua senha.">
 			    </div>
 
-			    <button type="submit" class="btn btn-primary">Acessar</button>
+			    <button type="submit" class="btn btn-primary">Login</button>
 		    </form>
         </div>
 

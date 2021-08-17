@@ -7,14 +7,14 @@ public class User {
     private String senha;
     
     //Construtor da classe
-    public User(int id, String nome, String cpf, String senha) {
+    public void User(int id, String nome, String cpf, String senha) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.senha = senha;
     }
 
-    public User() {
+    public void User() {
 
     }
 
