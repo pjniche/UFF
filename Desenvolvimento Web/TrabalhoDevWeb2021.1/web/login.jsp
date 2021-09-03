@@ -13,7 +13,6 @@
             <!-- Conteúdo aqui -->
 		    <h3>Acessar o Sistema</h3>
 		    <form method="POST" action="ValidarLogin" name="ValidaForm">
-                <input type="hidden" maxlength="11" id="id" value="">
 			    
                 <div class="form-group">
 				    <label for="cpf">CPF</label>

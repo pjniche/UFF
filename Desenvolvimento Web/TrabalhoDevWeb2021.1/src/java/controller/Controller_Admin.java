@@ -28,7 +28,6 @@ public class Controller_Admin extends HttpServlet {
         switch (option) {
 
             case "adicionar":
-                admin.setId(0);
                 admin.setNome("");
                 admin.setCpf("");
                 admin.setSenha("");
@@ -41,7 +40,7 @@ public class Controller_Admin extends HttpServlet {
             case "exibir":
                 administradores = daoAdmin.getLista();
                 request.setAttribute("administradores", administradores);
-                RequestDispatcher exibir = getServletContext().getRequestDispatcher("/.jsp");
+                RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
                 exibir.forward(request, response);
                 break;
             
@@ -85,7 +84,7 @@ public class Controller_Admin extends HttpServlet {
         try {
             User admin = new User();
 
-            admin.setId(Integer.parseInt(request.getParameter("id")));
+            //admin.setId(Integer.parseInt(request.getParameter("id")));
             admin.setNome(request.getParameter("nome"));
             admin.setCpf(request.getParameter("cpf"));
             admin.setSenha(request.getParameter("senha"));
