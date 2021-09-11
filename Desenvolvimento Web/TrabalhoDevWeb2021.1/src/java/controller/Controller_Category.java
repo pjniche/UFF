@@ -1,6 +1,6 @@
 package controller;
 
-import model.Admin;
+import model.Category;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -11,35 +11,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 
-@WebServlet(name = "Controller_Admin", urlPatterns = {"/Controller_Admin"})
-public class Controller_Admin extends HttpServlet {
+@WebServlet(name = "Controller_Category", urlPatterns = {"/Controller_Category"})
+public class Controller_Category extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        DAO daoAdmin = new DAO();
+        DAO daoCategory = new DAO();
         String option = (String)request.getParameter("option");
-        ArrayList<Admin> administradores;
+        ArrayList<Category> categorias;
         int id;
 
-        Admin admin = new Admin();
+        Category categoria = new Category();
 
         switch (option) {
 
             case "adicionar":
-                admin.setNome("");
-                admin.setCpf("");
-                admin.setSenha("");
+                categoria.setDescricao("");
 
-                request.setAttribute("admin", admin);
-                RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-admin.jsp");
+                request.setAttribute("categoria", categoria);
+                RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-category.jsp");
                 adicionar.forward(request, response);
                 break;
 
             case "exibir":
-                administradores = daoAdmin.getListaAdmin();
-                request.setAttribute("administradores", administradores);
+                categorias = daoCategory.getListaCategory();
+                request.setAttribute("categorias", categorias);
                 RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
                 exibir.forward(request, response);
                 break;
@@ -53,18 +51,16 @@ public class Controller_Admin extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String mensagem;
         try {
-            Admin admin = new Admin();
+            Category categoria = new Category();
 
-            admin.setNome(request.getParameter("nome"));
-            admin.setCpf(request.getParameter("cpf"));
-            admin.setSenha(request.getParameter("senha"));
+            categoria.setDescricao(request.getParameter("descricao"));
 
-            DAO daoAdmin = new DAO();
+            DAO daoCategory = new DAO();
 
-            if (daoAdmin.gravarAdmin(admin)) {
-                mensagem = "Usuário gravado com sucesso!";
+            if (daoCategory.gravarCategory(categoria)) {
+                mensagem = "Categoria gravada com sucesso!";
             } else {
-                mensagem = "Erro ao gravar usuário!";
+                mensagem = "Erro ao gravar categoria!";
             }
 
             request.setAttribute("mensagem", mensagem);
@@ -72,7 +68,7 @@ public class Controller_Admin extends HttpServlet {
             rd.forward(request, response);
 
         } catch (Exception e) {
-            mensagem = "Erro ao gravar usuário!";
+            mensagem = "Erro ao gravar categoria!";
             request.setAttribute("mensagem", mensagem);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/error.jsp");
             rd.forward(request, response);

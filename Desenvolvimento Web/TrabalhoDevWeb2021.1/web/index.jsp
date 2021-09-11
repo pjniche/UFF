@@ -8,7 +8,7 @@
     <body>
         <div class="container">
             <!-- Menu de navegação -->
-            <%@include file="menu-home.jsp" %>
+            <%@include file="navbar-home.jsp" %>
 
 		    <!-- Conteúdo aqui -->
 		    <div class="card text-center">
@@ -19,7 +19,7 @@
 					    O sistema funciona como uma conta corrente de um banco tradicional, apresentando os lançamentos
 					    financeiros em uma lista.
 				    </p>
-				    <a href="login.jsp" class="btn btn-primary">Acessar</a>
+				    <a href="form-login.jsp" class="btn btn-primary">Acessar</a>
 			    </div>
 			    <div class="card-footer text-muted">Universidade Federal Fluminense</div>
 		    </div>

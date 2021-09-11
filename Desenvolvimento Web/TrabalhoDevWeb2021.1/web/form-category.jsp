@@ -1,3 +1,4 @@
+<%@page import="model.Category"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,15 +9,16 @@
     <body>
         <div class="container">
             <!-- Menu de navegação -->
-            <%@include file="menu-admin.jsp" %>
+            <%@include file="navbar-admin.jsp" %>
 
 		    <!-- Conteúdo aqui -->
-            <h4>Cadastrar nova categoria</h4>
-            <form method="POST" action="">
-                <input type="hidden" maxlength="11" id="id" value="">
-                
+            <%
+               Category aux = (Category)request.getAttribute("categoria");
+            %>
+		    <h4>Cadastrar categoria</h4>
+            <form method="POST" action="Controller_Category">
                 <div class="mb-3">
-                    <input type="text" maxlength="20" class="form-control" id="categoria" placeholder="Digite o nome da categoria.">
+                    <input type="text" maxlength="20" class="form-control" id="categoria" placeholder="Digite o nome da categoria." required>
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>

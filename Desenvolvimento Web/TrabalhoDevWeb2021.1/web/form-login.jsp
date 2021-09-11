@@ -8,20 +8,20 @@
     <body>
         <div class="container">
             <!-- Menu de navegação -->
-            <%@include file="menu-home.jsp" %>
+            <%@include file="navbar-home.jsp" %>
 
             <!-- Conteúdo aqui -->
 		    <h3>Acessar o Sistema</h3>
-		    <form method="POST" action="ValidarLogin" name="ValidaForm">
+		    <form method="POST" action="Login">
 			    
                 <div class="form-group">
 				    <label for="cpf">CPF</label>
-				    <input type="text" class="form-control cpf" id="cpf" placeholder="Ex: xxx.xxx.xxx-xx">
+				    <input type="text" class="form-control cpf" id="cpf" placeholder="Ex: xxx.xxx.xxx-xx" required>
 			    </div>
 
 			    <div class="form-group">
 				    <label for="senha">Senha</label>
-				    <input type="password" maxlength="255" class="form-control" id="senha" placeholder="Digite a sua senha.">
+				    <input type="password" maxlength="255" class="form-control" id="senha" placeholder="Digite a sua senha." required>
 			    </div>
 
 			    <button type="submit" class="btn btn-primary">Login</button>

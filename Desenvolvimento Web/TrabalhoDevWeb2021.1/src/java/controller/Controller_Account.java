@@ -1,6 +1,6 @@
 package controller;
 
-import model.Admin;
+import model.Account;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -11,35 +11,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 
-@WebServlet(name = "Controller_Admin", urlPatterns = {"/Controller_Admin"})
-public class Controller_Admin extends HttpServlet {
+@WebServlet(name = "Controller_Account", urlPatterns = {"/Controller_Account"})
+public class Controller_Account extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        DAO daoAdmin = new DAO();
+        DAO daoAccount = new DAO();
         String option = (String)request.getParameter("option");
-        ArrayList<Admin> administradores;
+        ArrayList<Account> contas;
         int id;
 
-        Admin admin = new Admin();
+        Account conta = new Account();
 
         switch (option) {
 
             case "adicionar":
-                admin.setNome("");
-                admin.setCpf("");
-                admin.setSenha("");
+                //conta.setId_usuario("");
+                conta.setNome_conta("");
+                conta.setBanco("");
+                conta.setAgencia("");
+                conta.setConta_corrente("");
 
-                request.setAttribute("admin", admin);
-                RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-admin.jsp");
+                request.setAttribute("conta", conta);
+                RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-account.jsp");
                 adicionar.forward(request, response);
                 break;
 
             case "exibir":
-                administradores = daoAdmin.getListaAdmin();
-                request.setAttribute("administradores", administradores);
+                contas = daoAccount.getListaAccount();
+                request.setAttribute("contas", contas);
                 RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
                 exibir.forward(request, response);
                 break;
@@ -53,18 +55,20 @@ public class Controller_Admin extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String mensagem;
         try {
-            Admin admin = new Admin();
+            Account conta = new Account();
 
-            admin.setNome(request.getParameter("nome"));
-            admin.setCpf(request.getParameter("cpf"));
-            admin.setSenha(request.getParameter("senha"));
+            //conta.setId_usuario(request.getParameter("id_usuario"));
+            conta.setNome_conta(request.getParameter("nome_conta"));
+            conta.setBanco(request.getParameter("banco"));
+            conta.setAgencia(request.getParameter("agencia"));
+            conta.setConta_corrente(request.getParameter("conta_corrente"));
 
-            DAO daoAdmin = new DAO();
+            DAO daoAccount = new DAO();
 
-            if (daoAdmin.gravarAdmin(admin)) {
-                mensagem = "Usuário gravado com sucesso!";
+            if (daoAccount.gravarAccount(conta)) {
+                mensagem = "Conta gravada com sucesso!";
             } else {
-                mensagem = "Erro ao gravar usuário!";
+                mensagem = "Erro ao gravar conta!";
             }
 
             request.setAttribute("mensagem", mensagem);
@@ -72,7 +76,7 @@ public class Controller_Admin extends HttpServlet {
             rd.forward(request, response);
 
         } catch (Exception e) {
-            mensagem = "Erro ao gravar usuário!";
+            mensagem = "Erro ao gravar conta!";
             request.setAttribute("mensagem", mensagem);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/error.jsp");
             rd.forward(request, response);

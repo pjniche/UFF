@@ -1,20 +1,20 @@
-package aplication;
+package model;
 
-public class User {
+public class Admin {
     private int id;
     private String nome;
     private String cpf;
     private String senha;
     
     //Construtor da classe
-    public void User(int id, String nome, String cpf, String senha) {
+    public void Admin(int id, String nome, String cpf, String senha) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.senha = senha;
     }
 
-    public void User() {
+    public void Admin() {
 
     }
 

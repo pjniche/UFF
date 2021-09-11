@@ -1,4 +1,4 @@
-<%@page import="aplication.User"%>
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,29 +9,31 @@
     <body>
         <div class="container">
             <!-- Menu de navegação -->
-            <%@include file="menu-admin.jsp" %>
+            <%@include file="navbar-admin.jsp" %>
 
 		    <!-- Conteúdo aqui -->
-		    <h4>Cadastrar novo usuário</h4>
-            <form method="POST" action="">
-                <input type="hidden" maxlength="11" id="id" value="">
+            <%
+               User aux = (User)request.getAttribute("user");
+            %>
+		    <h4>Cadastrar usuário</h4>
+            <form method="POST" action="Controller_User">
 
                 <div class="mb-3">
                     <label for="Nome" class="form-label">Nome</label>
-                    <input type="text" maxlength="20" class="form-control" id="nome" placeholder="Digite seu nome.">
+                    <input type="text" maxlength="20" class="form-control" id="nome" placeholder="Digite seu nome." required>
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control cpf" id="cpf" placeholder="Ex: xxx.xxx.xxx-xx">
+                    <input type="text" class="form-control cpf" id="cpf" placeholder="Ex: xxx.xxx.xxx-xx" required>
                 </div>
                 <div class="form-group">
                     <label for="senha">Senha</label>
-                    <input type="password" maxlength="255" class="form-control" id="senha" placeholder="Digite a sua senha.">
+                    <input type="password" maxlength="255" class="form-control" id="senha" placeholder="Digite a sua senha." required>
                 </div>
                 <div class="form-group">
                     <label for="suspenso">Suspenso?</label>
                     <input type="text" maxlength="1" class="form-control" id="suspenso"
-                        placeholder="'S' para Suspenso ou 'N' para Não Suspenso.">
+                        placeholder="'S' para Suspenso ou 'N' para Não Suspenso." required>
                 </div>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
             </form>

@@ -1,6 +1,6 @@
 package controller;
 
-import model.Admin;
+import model.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -11,36 +11,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 
-@WebServlet(name = "Controller_Admin", urlPatterns = {"/Controller_Admin"})
-public class Controller_Admin extends HttpServlet {
+@WebServlet(name = "Controller_User", urlPatterns = {"/Controller_User"})
+public class Controller_User extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        DAO daoAdmin = new DAO();
+        DAO daoUser = new DAO();
         String option = (String)request.getParameter("option");
-        ArrayList<Admin> administradores;
+        ArrayList<User> usuarios;
         int id;
 
-        Admin admin = new Admin();
+        User user = new User();
 
         switch (option) {
 
             case "adicionar":
-                admin.setNome("");
-                admin.setCpf("");
-                admin.setSenha("");
+                user.setNome("");
+                user.setCpf("");
+                user.setSenha("");
+                user.setSuspenso("");
 
-                request.setAttribute("admin", admin);
-                RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-admin.jsp");
+                request.setAttribute("user", user);
+                RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-user.jsp");
                 adicionar.forward(request, response);
                 break;
 
             case "exibir":
-                administradores = daoAdmin.getListaAdmin();
-                request.setAttribute("administradores", administradores);
-                RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
+                usuarios = daoUser.getListaUser();
+                request.setAttribute("usuarios", usuarios);
+                RequestDispatcher exibir = getServletContext().getRequestDispatcher("/user-list.jsp");
                 exibir.forward(request, response);
                 break;
         
@@ -53,15 +54,16 @@ public class Controller_Admin extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String mensagem;
         try {
-            Admin admin = new Admin();
+            User user = new User();
 
-            admin.setNome(request.getParameter("nome"));
-            admin.setCpf(request.getParameter("cpf"));
-            admin.setSenha(request.getParameter("senha"));
+            user.setNome(request.getParameter("nome"));
+            user.setCpf(request.getParameter("cpf"));
+            user.setSenha(request.getParameter("senha"));
+            user.setSuspenso(request.getParameter("suspenso"));
 
-            DAO daoAdmin = new DAO();
+            DAO daoUser = new DAO();
 
-            if (daoAdmin.gravarAdmin(admin)) {
+            if (daoUser.gravarUser(user)) {
                 mensagem = "Usuário gravado com sucesso!";
             } else {
                 mensagem = "Erro ao gravar usuário!";

@@ -8,8 +8,11 @@
     <body>
         <div class="container">
             <!-- Menu de navegação -->
-            <%@include file="menu-admin.jsp" %>
-        </div>
+            <%@include file="navbar-user.jsp" %>
+
+            <!-- Conteúdo aqui -->
+
+	    </div>
 
         <!-- JavaScript (Opcional) -->
         <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
