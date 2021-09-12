@@ -1,6 +1,6 @@
 package controller;
 
-import model.Transaction;
+import aplication.Transaction;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO;
+import model.DAO_Transaction;
 
 @WebServlet(name = "Controller_Transaction", urlPatterns = {"/Controller_Transaction"})
 public class Controller_Transaction extends HttpServlet {
@@ -18,7 +18,7 @@ public class Controller_Transaction extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        DAO daoTransaction = new DAO();
+        DAO_Transaction daoTransaction = new DAO_Transaction();
         String option = (String)request.getParameter("option");
         ArrayList<Transaction> lancamentos;
         int id;
@@ -28,9 +28,10 @@ public class Controller_Transaction extends HttpServlet {
         switch (option) {
 
             case "adicionar":
-                //lancamento.setId_conta("");
-                //lancamento.setId_categoria("");
-                //lancamento.setValor("");
+                lancamento.setId(0);
+                lancamento.setId_conta(0);
+                lancamento.setId_categoria(0);
+                lancamento.setValor(0);
                 lancamento.setOperacao("");
                 lancamento.setData("");
                 lancamento.setDescricao("");
@@ -58,14 +59,14 @@ public class Controller_Transaction extends HttpServlet {
         try {
             Transaction lancamento = new Transaction();
 
-            //lancamento.setId_conta(request.getParameter("id_conta"));
-            //lancamento.setId_categoria(request.getParameter("id_categoria"));
-            //lancamento.setValor(request.getParameter("valor"));
+            lancamento.setId_conta(request.getParameter("id_conta"));
+            lancamento.setId_categoria(request.getParameter("id_categoria"));
+            lancamento.setValor(request.getParameter("valor"));
             lancamento.setOperacao(request.getParameter("operacao"));
             lancamento.setData(request.getParameter("data"));
             lancamento.setDescricao(request.getParameter("descricao"));
 
-            DAO daoTransaction = new DAO();
+            DAO_Transaction daoTransaction = new DAO_Transaction();
 
             if (daoTransaction.gravarTransaction(lancamento)) {
                 mensagem = "Lançamento gravado com sucesso!";

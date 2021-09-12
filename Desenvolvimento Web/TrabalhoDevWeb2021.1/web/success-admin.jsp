@@ -6,12 +6,17 @@
         <%@include file="header.html" %>
     </head>
     <body>
-        <div class="container">
+        <div class="container mt-2">
             <!-- Menu de navegação -->
-            <%@include file="menu-home.jsp" %>
+            <%@include file="dashboard-admin.jsp" %>
 
 		    <!-- Conteúdo aqui -->
-		    <h4>Cadastrado com sucesso!</h4>
+            <div class="col-8 mt-5">
+                <div class="alert alert-success" role="alert">
+                    <h5>Dados gravados com sucesso!</h5>
+                    <h4><%=String aux = (String)request.getAttribute("mensagem")%></h4>
+                </div>
+            </div>
 	    </div>
 
         <!-- JavaScript (Opcional) -->

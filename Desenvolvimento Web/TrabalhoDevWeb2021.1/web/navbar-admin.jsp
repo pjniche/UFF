@@ -22,7 +22,7 @@
           				<a class="nav-link" href="Controller_Category?option=adicionar">Adicionar Categoria</a>
         			</li>
 					<li class="nav-item">
-          				<a class="nav-link" href="#">Logout</a>
+          				<a class="nav-link" href="index.jsp">Logout</a>
         			</li>
       			</ul>
     		</div>

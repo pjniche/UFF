@@ -6,12 +6,16 @@
         <%@include file="header.html" %>
     </head>
     <body>
-        <div class="container">
+        <div class="container mt-2">
             <!-- Menu de navegação -->
-            <%@include file="menu-home.jsp" %>
+            <%@include file="dashboard-user.jsp" %>
 
 		    <!-- Conteúdo aqui -->
-		    <h4>Ocorreu um erro!</h4>
+            <div class="col-8 mt-5">
+                <div class="alert alert-success" role="alert">
+                    <h5>Dados gravados com sucesso!</h5>
+                </div>
+            </div>
 	    </div>
 
         <!-- JavaScript (Opcional) -->

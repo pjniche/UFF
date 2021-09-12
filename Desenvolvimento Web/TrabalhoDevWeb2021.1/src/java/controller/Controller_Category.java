@@ -1,6 +1,6 @@
 package controller;
 
-import model.Category;
+import aplication.Category;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO;
+import model.DAO_Category;
 
 @WebServlet(name = "Controller_Category", urlPatterns = {"/Controller_Category"})
 public class Controller_Category extends HttpServlet {
@@ -18,7 +18,7 @@ public class Controller_Category extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        DAO daoCategory = new DAO();
+        DAO_Category daoCategory = new DAO_Category();
         String option = (String)request.getParameter("option");
         ArrayList<Category> categorias;
         int id;
@@ -28,6 +28,7 @@ public class Controller_Category extends HttpServlet {
         switch (option) {
 
             case "adicionar":
+                categoria.setId(0);
                 categoria.setDescricao("");
 
                 request.setAttribute("categoria", categoria);
@@ -55,7 +56,7 @@ public class Controller_Category extends HttpServlet {
 
             categoria.setDescricao(request.getParameter("descricao"));
 
-            DAO daoCategory = new DAO();
+            DAO_Category daoCategory = new DAO_Category();
 
             if (daoCategory.gravarCategory(categoria)) {
                 mensagem = "Categoria gravada com sucesso!";
@@ -64,13 +65,13 @@ public class Controller_Category extends HttpServlet {
             }
 
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-admin.jsp");
             rd.forward(request, response);
 
         } catch (Exception e) {
             mensagem = "Erro ao gravar categoria!";
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/error.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-admin.jsp");
             rd.forward(request, response);
         }
     }

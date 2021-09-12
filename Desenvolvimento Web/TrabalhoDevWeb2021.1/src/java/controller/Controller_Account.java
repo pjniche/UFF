@@ -1,6 +1,6 @@
 package controller;
 
-import model.Account;
+import aplication.Account;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO;
+import model.DAO_Account;
 
 @WebServlet(name = "Controller_Account", urlPatterns = {"/Controller_Account"})
 public class Controller_Account extends HttpServlet {
@@ -18,7 +18,7 @@ public class Controller_Account extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        DAO daoAccount = new DAO();
+        DAO_Account daoAccount = new DAO_Account();
         String option = (String)request.getParameter("option");
         ArrayList<Account> contas;
         int id;
@@ -28,7 +28,8 @@ public class Controller_Account extends HttpServlet {
         switch (option) {
 
             case "adicionar":
-                //conta.setId_usuario("");
+                conta.setId(0);
+                conta.setId_usuario(0);
                 conta.setNome_conta("");
                 conta.setBanco("");
                 conta.setAgencia("");
@@ -57,13 +58,13 @@ public class Controller_Account extends HttpServlet {
         try {
             Account conta = new Account();
 
-            //conta.setId_usuario(request.getParameter("id_usuario"));
+            conta.setId_usuario(request.getParameter("id_usuario"));
             conta.setNome_conta(request.getParameter("nome_conta"));
             conta.setBanco(request.getParameter("banco"));
             conta.setAgencia(request.getParameter("agencia"));
             conta.setConta_corrente(request.getParameter("conta_corrente"));
 
-            DAO daoAccount = new DAO();
+            DAO_Account daoAccount = new DAO_Account();
 
             if (daoAccount.gravarAccount(conta)) {
                 mensagem = "Conta gravada com sucesso!";
@@ -72,13 +73,13 @@ public class Controller_Account extends HttpServlet {
             }
 
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-user.jsp");
             rd.forward(request, response);
 
         } catch (Exception e) {
             mensagem = "Erro ao gravar conta!";
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/error.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-user.jsp");
             rd.forward(request, response);
         }
     }

@@ -1,4 +1,4 @@
-package model;
+package aplication;
 
 public class User extends Admin {
     private String suspenso;

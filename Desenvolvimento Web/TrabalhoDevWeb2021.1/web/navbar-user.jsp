@@ -16,7 +16,7 @@
           				<a class="nav-link" href="#">Cadastrar Lançamento</a>
         			</li>
 					<li class="nav-item">
-          				<a class="nav-link" href="#">Logout</a>
+          				<a class="nav-link" href="index.jsp">Logout</a>
         			</li>
       			</ul>
     		</div>
