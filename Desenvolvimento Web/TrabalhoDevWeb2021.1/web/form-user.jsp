@@ -20,19 +20,19 @@
                 <form method="POST" action="Controller_User">
                     <div class="mb-3">
                         <label for="Nome" class="form-label">Nome</label>
-                        <input type="text" maxlength="20" class="form-control" id="nome" placeholder="Digite seu nome." required>
+                        <input type="text" maxlength="20" class="form-control" name="nome" id="nome" placeholder="Digite seu nome." required>
                     </div>
                     <div class="form-group">
                         <label for="cpf">CPF</label>
-                        <input type="text" class="form-control cpf" id="cpf" placeholder="Ex: xxx.xxx.xxx-xx" required>
+                        <input type="text" class="form-control cpf" name="cpf" id="cpf" placeholder="Ex: xxx.xxx.xxx-xx" required>
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="password" maxlength="255" class="form-control" id="senha" placeholder="Digite a sua senha." required>
+                        <input type="password" maxlength="255" class="form-control" name="senha" id="senha" placeholder="Digite a sua senha." required>
                     </div>
                     <div class="form-group">
                         <label for="suspenso">Suspenso?</label>
-                        <input type="text" maxlength="1" class="form-control" id="suspenso" placeholder="'S' para Suspenso ou 'N' para Não Suspenso." required>
+                        <input type="text" maxlength="1" class="form-control" name="suspenso" id="suspenso" placeholder="'S' para Suspenso ou 'N' para Não Suspenso." required>
                     </div>
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>

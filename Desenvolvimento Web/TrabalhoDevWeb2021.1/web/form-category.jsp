@@ -19,7 +19,7 @@
 		        <h4>Cadastrar categoria</h4>
                 <form method="POST" action="Controller_Category">
                     <div class="mb-3">
-                        <input type="text" maxlength="20" class="form-control" id="categoria" placeholder="Digite o nome da categoria." required>
+                        <input type="text" maxlength="20" class="form-control" name="categoria" id="categoria" placeholder="Digite o nome da categoria." required>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>

@@ -40,7 +40,7 @@ public class Controller_Account extends HttpServlet {
                 adicionar.forward(request, response);
                 break;
 
-            case "exibir":
+            case "listar":
                 contas = daoAccount.getListaAccount();
                 request.setAttribute("contas", contas);
                 RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
@@ -58,7 +58,6 @@ public class Controller_Account extends HttpServlet {
         try {
             Account conta = new Account();
 
-            conta.setId_usuario(request.getParameter("id_usuario"));
             conta.setNome_conta(request.getParameter("nome_conta"));
             conta.setBanco(request.getParameter("banco"));
             conta.setAgencia(request.getParameter("agencia"));
@@ -73,13 +72,13 @@ public class Controller_Account extends HttpServlet {
             }
 
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-user.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-user.jsp");
             rd.forward(request, response);
 
         } catch (Exception e) {
-            mensagem = "Erro ao gravar conta!";
+            mensagem = "Erro de exceção ao gravar conta!";
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-user.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-user.jsp");
             rd.forward(request, response);
         }
     }

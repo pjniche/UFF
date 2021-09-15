@@ -41,7 +41,7 @@ public class Controller_Transaction extends HttpServlet {
                 adicionar.forward(request, response);
                 break;
 
-            case "exibir":
+            case "listar":
                 lancamentos = daoTransaction.getListaTransaction();
                 request.setAttribute("lancamentos", lancamentos);
                 RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
@@ -59,9 +59,7 @@ public class Controller_Transaction extends HttpServlet {
         try {
             Transaction lancamento = new Transaction();
 
-            lancamento.setId_conta(request.getParameter("id_conta"));
-            lancamento.setId_categoria(request.getParameter("id_categoria"));
-            lancamento.setValor(request.getParameter("valor"));
+            //lancamento.setValor(request.getParameter("valor"));
             lancamento.setOperacao(request.getParameter("operacao"));
             lancamento.setData(request.getParameter("data"));
             lancamento.setDescricao(request.getParameter("descricao"));
@@ -75,13 +73,13 @@ public class Controller_Transaction extends HttpServlet {
             }
 
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-user.jsp");
             rd.forward(request, response);
 
         } catch (Exception e) {
-            mensagem = "Erro ao gravar lançamento!";
+            mensagem = "Erro de exceção ao gravar lançamento!";
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/error.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-user.jsp");
             rd.forward(request, response);
         }
     }

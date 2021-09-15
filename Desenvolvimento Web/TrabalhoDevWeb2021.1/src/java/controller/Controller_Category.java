@@ -36,7 +36,7 @@ public class Controller_Category extends HttpServlet {
                 adicionar.forward(request, response);
                 break;
 
-            case "exibir":
+            case "listar":
                 categorias = daoCategory.getListaCategory();
                 request.setAttribute("categorias", categorias);
                 RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
@@ -54,7 +54,7 @@ public class Controller_Category extends HttpServlet {
         try {
             Category categoria = new Category();
 
-            categoria.setDescricao(request.getParameter("descricao"));
+            categoria.setDescricao(request.getParameter("categoria"));
 
             DAO_Category daoCategory = new DAO_Category();
 
@@ -65,13 +65,13 @@ public class Controller_Category extends HttpServlet {
             }
 
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-admin.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
             rd.forward(request, response);
 
         } catch (Exception e) {
-            mensagem = "Erro ao gravar categoria!";
+            mensagem = "Erro de exceção ao gravar categoria!";
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-admin.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
             rd.forward(request, response);
         }
     }

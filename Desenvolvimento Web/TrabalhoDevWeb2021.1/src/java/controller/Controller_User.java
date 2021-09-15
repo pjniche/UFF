@@ -39,13 +39,14 @@ public class Controller_User extends HttpServlet {
                 adicionar.forward(request, response);
                 break;
 
-            case "exibir":
+            case "listar":
                 usuarios = daoUser.getListaUser();
                 request.setAttribute("usuarios", usuarios);
                 RequestDispatcher exibir = getServletContext().getRequestDispatcher("/list-user.jsp");
                 exibir.forward(request, response);
                 break;
-
+            
+            /*
             case "editar":
 
                 id = Integer.parseInt(request.getParameter("id"));
@@ -73,6 +74,7 @@ public class Controller_User extends HttpServlet {
                 RequestDispatcher aposexcluir = getServletContext().getRequestDispatcher("/ListaContatoView.jsp");
                 aposexcluir.forward(request, response);
                 break;
+            */
         }
     }
 
@@ -98,13 +100,13 @@ public class Controller_User extends HttpServlet {
             }
 
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-admin.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
             rd.forward(request, response);
 
         } catch (Exception e) {
-            mensagem = "Erro ao gravar usuário!";
+            mensagem = "Erro de exceção ao gravar usuário!";
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/error-admin.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
             rd.forward(request, response);
         }
     }

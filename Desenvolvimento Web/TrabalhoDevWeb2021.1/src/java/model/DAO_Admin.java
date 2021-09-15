@@ -1,6 +1,6 @@
 package model;
 
-import aplication.Admin;
+import aplication.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +26,7 @@ public class DAO_Admin extends HttpServlet {
         }
     }
 
-    public boolean gravarAdmin( Admin administrador ) {
+    public boolean gravarAdmin( User administrador ) {
         try {
             String sql;
             if ( administrador.getId() == 0 ) {
@@ -67,8 +67,8 @@ public class DAO_Admin extends HttpServlet {
         }
     }
 
-    public Admin getAdminByID( int id ) {
-        Admin admin = new Admin();
+    public User getAdminByID( int id ) {
+        User admin = new User();
         try {
             String sql = "SELECT * FROM administradores WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -89,16 +89,16 @@ public class DAO_Admin extends HttpServlet {
         return admin;
     }
 
-    public ArrayList<Admin> getListaAdmin() {
+    public ArrayList<User> getListaAdmin() {
         //Cria o objeto que irá armazenar os registros retornados do BD.
-        ArrayList<Admin> resultado = new ArrayList<>();
+        ArrayList<User> resultado = new ArrayList<>();
         try {            
             // Cria o objeto que será utilizado para enviar comandos SQL para o BD.
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM administradores");
             // rs.next() Aponta para o próximo registro do BD, se houver um.
             while( rs.next() ) {
-                Admin administrador = new Admin();
+                User administrador = new User();
 
                 administrador.setId(rs.getInt("id") );
                 administrador.setNome( rs.getString("nome") );

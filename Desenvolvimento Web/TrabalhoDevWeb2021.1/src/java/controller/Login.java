@@ -1,7 +1,6 @@
 package controller;
 
 import aplication.User;
-import aplication.Admin;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.LoginDAO;
 
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
@@ -30,16 +30,25 @@ public class Login extends HttpServlet {
         String senha = (String)request.getParameter("senha");
 
         // verifica os dados
-        if ((usuario != null) && (senha != null)) {
+        LoginDAO loginDAO = new LoginDAO();
+
+        User usuarioLogado = loginDAO.validarLogin(usuario, senha);
+
+        if ((usuario.equals(usuarioLogado.getCpf())) && (senha.equals(usuarioLogado.getSenha()))) {
 
             request.setAttribute("mensagem", "Usuário autenticado!");
 
             HttpSession session = request.getSession();
-            session.setAttribute("usuario", usuario);
+            session.setAttribute("cliente", usuarioLogado);
 
             // redireciona para área restrita
-            RequestDispatcher rd = request.getRequestDispatcher("dashboard-admin.jsp");
-            rd.forward(request, response);
+            if (usuarioLogado.getSuspenso() == null) {
+                RequestDispatcher rd = request.getRequestDispatcher("dashboard-admin.jsp");
+                rd.forward(request, response);    
+            } else {
+                RequestDispatcher rd = request.getRequestDispatcher("dashboard-user.jsp");
+                rd.forward(request, response);
+            }
 
         } else {
 

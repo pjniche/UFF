@@ -21,11 +21,11 @@
                 <form method="POST" action="Login">
 			        <div class="form-group">
 				        <label for="usuario">CPF</label>
-				        <input type="text" class="form-control cpf" id="usuario" placeholder="Ex: xxx.xxx.xxx-xx" required>
+				        <input type="text" class="form-control cpf" name="usuario" id="usuario" placeholder="Ex: xxx.xxx.xxx-xx" required>
 			        </div>
 			        <div class="form-group">
 				        <label for="senha">Senha</label>
-				        <input type="password" maxlength="255" class="form-control" id="senha" placeholder="Digite a sua senha." required>
+				        <input type="password" maxlength="255" class="form-control" name="senha" id="senha" placeholder="Digite a sua senha." required>
 			        </div>
 			        <button type="submit" class="btn btn-primary">Login</button>
 		        </form>

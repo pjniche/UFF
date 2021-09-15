@@ -12,21 +12,21 @@
 
             <!-- Conteúdo aqui -->
             <%
+            /*
                 String usuario = (String)session.getAttribute("usuario");
                 if (usuario == null) {
                     response.sendRedirect("index.jsp");
                 }
+            */
             %>
             <%
                 if (request.getAttribute("mensagem") != null) {
-                    String mensagem = (String) request.getAttribute("mensagem");
+                    String mensagem = (String)request.getAttribute("mensagem");
             %>
                     <div class="alert alert-success" role="alert">
                         <%=mensagem%>
                     </div>
-            <%
-                }
-            %>
+            <% } %>
 	    </div>
 
         <!-- JavaScript (Opcional) -->

@@ -20,27 +20,27 @@
                 <form method="POST" action="Controller_Transaction">
                     <div class="mb-3">
                         <label for="id_conta" class="form-label">Id Conta</label>
-                        <input type="number" maxlength="11" class="form-control" id="id_conta" placeholder="Digite aqui." required>
+                        <input type="number" maxlength="11" class="form-control" name="id_conta" id="id_conta" placeholder="Digite aqui." required>
                     </div>
                     <div class="form-group">
                         <label for="id_categoria">Id Categoria</label>
-                        <input type="number" maxlength="11" class="form-control" id="id_categoria" placeholder="Digite aqui." required>
+                        <input type="number" maxlength="11" class="form-control" name="id_categoria" id="id_categoria" placeholder="Digite aqui." required>
                     </div>
                     <div class="form-group">
                         <label for="valor">Valor</label>
-                        <input type="" maxlength="" class="form-control" id="valor" placeholder="Digite aqui." required>
+                        <input type="" maxlength="" class="form-control" name="valor" id="valor" placeholder="Digite aqui." required>
                     </div>
                     <div class="form-group">
                         <label for="operacao">Operação</label>
-                        <input type="text" maxlength="1" class="form-control" id="operacao" placeholder="Digite aqui." required>
+                        <input type="text" maxlength="1" class="form-control" name="operacao" id="operacao" placeholder="Digite aqui." required>
                     </div>
                     <div class="form-group">
                         <label for="data">Data</label>
-                        <input type="" maxlength="" class="form-control" id="data" placeholder="Digite aqui." required>
+                        <input type="" maxlength="" class="form-control" name="data" id="data" placeholder="Digite aqui." required>
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descrição</label>
-                        <input type="" maxlength="" class="form-control" id="descricao" placeholder="Digite aqui. (Opcional)">
+                        <input type="" maxlength="" class="form-control" name="descricao" id="descricao" placeholder="Digite aqui. (Opcional)">
                     </div>
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>

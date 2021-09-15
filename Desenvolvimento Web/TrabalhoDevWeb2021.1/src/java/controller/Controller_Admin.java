@@ -1,6 +1,6 @@
 package controller;
 
-import aplication.Admin;
+import aplication.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -20,10 +20,10 @@ public class Controller_Admin extends HttpServlet {
 
         DAO_Admin daoAdmin = new DAO_Admin();
         String option = (String)request.getParameter("option");
-        ArrayList<Admin> administradores;
+        ArrayList<User> administradores;
         int id;
 
-        Admin admin = new Admin();
+        User admin = new User();
 
         switch (option) {
 
@@ -38,7 +38,7 @@ public class Controller_Admin extends HttpServlet {
                 adicionar.forward(request, response);
                 break;
 
-            case "exibir":
+            case "listar":
                 administradores = daoAdmin.getListaAdmin();
                 request.setAttribute("administradores", administradores);
                 RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
@@ -54,7 +54,7 @@ public class Controller_Admin extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String mensagem;
         try {
-            Admin admin = new Admin();
+            User admin = new User();
 
             admin.setNome(request.getParameter("nome"));
             admin.setCpf(request.getParameter("cpf"));
@@ -63,19 +63,19 @@ public class Controller_Admin extends HttpServlet {
             DAO_Admin daoAdmin = new DAO_Admin();
 
             if (daoAdmin.gravarAdmin(admin)) {
-                mensagem = "Usuário gravado com sucesso!";
+                mensagem = "Administrador gravado com sucesso!";
             } else {
-                mensagem = "Erro ao gravar usuário!";
+                mensagem = "Erro ao gravar administrador!";
             }
 
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-admin.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/dashboard-admin.jsp");
             rd.forward(request, response);
 
         } catch (Exception e) {
-            mensagem = "Erro ao gravar usuário!";
+            mensagem = "Erro de exceção ao gravar administrador!";
             request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/success-admin.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/dashboard-admin.jsp");
             rd.forward(request, response);
         }
     }
