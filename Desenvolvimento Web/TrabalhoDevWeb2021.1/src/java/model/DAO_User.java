@@ -55,12 +55,22 @@ public class DAO_User extends HttpServlet {
         }
     }
 
-    public boolean excluirUser( int id ) {
+    public boolean editSuspenso( User usuario ) {
         try {
-            String sql = "DELETE FROM usuarios WHERE id = ?";
+            String sql = "UPDATE usuarios SET suspenso=? WHERE id=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            
+            String suspenso = "N";
+            if ( suspenso.equals(usuario.getSuspenso()) ) {
+                ps.setString(1, "S");
+                ps.setInt(2, usuario.getId());
+            } else {
+                ps.setString(1, "N");
+                ps.setInt(2, usuario.getId());
+            }
+            
             ps.execute();
+            
             return true;
         } catch( SQLException e ) {
             System.out.println("Erro de SQL: " + e.getMessage());

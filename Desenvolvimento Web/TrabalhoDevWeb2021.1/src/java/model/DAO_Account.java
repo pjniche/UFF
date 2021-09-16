@@ -28,14 +28,8 @@ public class DAO_Account extends HttpServlet {
 
     public boolean gravarAccount( Account conta ) {
         try {
-            String sql;
-            if ( conta.getId() == 0 ) {
-                // Realizar uma inclusão
-                sql = "INSERT INTO contas (id_usuario, nome_conta, banco, agencia, conta_corrente) VALUES (?,?,?,?,?)";
-            } else {
-                // Realizar uma alteração
-                sql = "UPDATE contas SET id_usuario=?, nome_conta=?, banco=?, agencia=?, conta_corrente=? WHERE id=?";
-            }
+            // Realizar uma inclusão
+            String sql = "INSERT INTO contas (id_usuario, nome_conta, banco, agencia, conta_corrente) VALUES (?,?,?,?,?)";
             
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, conta.getId_usuario());

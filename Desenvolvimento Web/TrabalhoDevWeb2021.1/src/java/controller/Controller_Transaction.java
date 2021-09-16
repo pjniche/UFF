@@ -59,7 +59,7 @@ public class Controller_Transaction extends HttpServlet {
         try {
             Transaction lancamento = new Transaction();
 
-            //lancamento.setValor(request.getParameter("valor"));
+            lancamento.setValor(Double.parseDouble(request.getParameter("valor")));
             lancamento.setOperacao(request.getParameter("operacao"));
             lancamento.setData(request.getParameter("data"));
             lancamento.setDescricao(request.getParameter("descricao"));

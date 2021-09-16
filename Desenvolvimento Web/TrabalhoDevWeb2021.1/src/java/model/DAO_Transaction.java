@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "DAO_Transaction", urlPatterns = {"/DAO_Transaction"})
 public class DAO_Transaction extends HttpServlet {
@@ -40,7 +41,7 @@ public class DAO_Transaction extends HttpServlet {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, lancamento.getId_conta());
             ps.setInt(2, lancamento.getId_categoria());
-            ps.setFloat(3, lancamento.getValor());
+            ps.setDouble(3, lancamento.getValor());
             ps.setString(4, lancamento.getOperacao());
             ps.setString(5, lancamento.getData());
             ps.setString(6, lancamento.getDescricao());
@@ -83,7 +84,7 @@ public class DAO_Transaction extends HttpServlet {
                 lancamento.setId(rs.getInt("id"));
                 lancamento.setId_conta(rs.getInt("id_conta"));
                 lancamento.setId_categoria(rs.getInt("id_categoria"));
-                lancamento.setValor(rs.getFloat("valor"));
+                lancamento.setValor(rs.getDouble("valor"));
                 lancamento.setOperacao(rs.getString("operacao"));
                 lancamento.setData(rs.getString("data")); // <<<------ Mudar para o tipo Date!!!
                 lancamento.setDescricao(rs.getString("descricao"));
@@ -108,9 +109,9 @@ public class DAO_Transaction extends HttpServlet {
                 
                 lancamento.setId_conta(rs.getInt("id_conta") );
                 lancamento.setId_categoria( rs.getInt("id_categoria") );
-                lancamento.setValor(rs.getFloat("valor") );
+                lancamento.setValor(rs.getDouble("valor"));
                 lancamento.setOperacao(rs.getString("operacao") );
-                lancamento.setData(rs.getString("data") );
+                lancamento.setData(rs.getString("data") ); // <<<------ Mudar para o tipo Date!!!
                 lancamento.setDescricao(rs.getString("descricao") );
                 
                 resultado.add(lancamento);

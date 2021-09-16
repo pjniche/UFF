@@ -10,10 +10,10 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
         			<li class="nav-item">
-          				<a class="nav-link" href="#">Cadastrar Conta Corrente</a>
+          				<a class="nav-link" href="Controller_Transaction?option=adicionar">Novo Lançamento</a>
         			</li>
 					<li class="nav-item">
-          				<a class="nav-link" href="#">Cadastrar Lançamento</a>
+          				<a class="nav-link" href="Controller_Account?option=adicionar">Conta Corrente</a>
         			</li>
 					<li class="nav-item">
           				<a class="nav-link" href="Logout">Logout</a>

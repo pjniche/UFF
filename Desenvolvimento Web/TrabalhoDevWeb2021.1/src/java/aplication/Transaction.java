@@ -4,13 +4,13 @@ public class Transaction {
     private int id;
     private int id_conta;
     private int id_categoria;
-    private float valor;
+    private double valor;
     private String operacao;
     private String data;
     private String descricao;
     
     //Construtor da classe
-    public void Transaction(int id, int id_conta, int id_categoria, float valor, String operacao, String data, String descricao) {
+    public void Transaction(int id, int id_conta, int id_categoria, double valor, String operacao, String data, String descricao) {
         this.id = id;
         this.id_conta = id_conta;
         this.id_categoria = id_categoria;
@@ -48,11 +48,11 @@ public class Transaction {
         this.id_categoria = id_categoria;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 

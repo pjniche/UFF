@@ -11,11 +11,11 @@
             <div class="col-8 mt-5">
                 <%
                     if (request.getAttribute("mensagem") != null) {
-                         String mensagem = (String)request.getAttribute("mensagem");
+                        String mensagem = (String)request.getAttribute("mensagem");
                 %>
-                        <div class="alert alert-danger" role="alert">
-                            <%=mensagem%>
-                        </div>
+                        <script>
+                            alert("<%=mensagem%>");
+                        </script>
                 <% } %>
                 <h3>Acessar o Sistema</h3>
                 <form method="POST" action="Login">

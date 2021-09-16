@@ -36,18 +36,25 @@ public class Login extends HttpServlet {
 
         if ((usuario.equals(usuarioLogado.getCpf())) && (senha.equals(usuarioLogado.getSenha()))) {
 
-            request.setAttribute("mensagem", "Usuário autenticado!");
-
-            HttpSession session = request.getSession();
-            session.setAttribute("cliente", usuarioLogado);
-
-            // redireciona para área restrita
-            if (usuarioLogado.getSuspenso() == null) {
-                RequestDispatcher rd = request.getRequestDispatcher("dashboard-admin.jsp");
-                rd.forward(request, response);    
-            } else {
-                RequestDispatcher rd = request.getRequestDispatcher("dashboard-user.jsp");
+            String suspenso = "S";
+            if (suspenso.equals(usuarioLogado.getSuspenso())) {
+                request.setAttribute("mensagem", "Usuário suspenso!");
+                RequestDispatcher rd = request.getRequestDispatcher("form-login.jsp");
                 rd.forward(request, response);
+            } else {
+                request.setAttribute("mensagem", "Bem-Vindo!");
+
+                HttpSession session = request.getSession();
+                session.setAttribute("usuarioLogado", usuarioLogado);
+
+                // redireciona para área restrita
+                if (usuarioLogado.getSuspenso() == null) {
+                    RequestDispatcher rd = request.getRequestDispatcher("dashboard-admin.jsp");
+                    rd.forward(request, response);    
+                } else {
+                    RequestDispatcher rd = request.getRequestDispatcher("dashboard-user.jsp");
+                    rd.forward(request, response);
+                }
             }
 
         } else {

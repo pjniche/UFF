@@ -39,13 +39,6 @@ public class Controller_Account extends HttpServlet {
                 RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-account.jsp");
                 adicionar.forward(request, response);
                 break;
-
-            case "listar":
-                contas = daoAccount.getListaAccount();
-                request.setAttribute("contas", contas);
-                RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
-                exibir.forward(request, response);
-                break;
         
         }
     }
@@ -58,6 +51,7 @@ public class Controller_Account extends HttpServlet {
         try {
             Account conta = new Account();
 
+            conta.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
             conta.setNome_conta(request.getParameter("nome_conta"));
             conta.setBanco(request.getParameter("banco"));
             conta.setAgencia(request.getParameter("agencia"));
@@ -66,9 +60,9 @@ public class Controller_Account extends HttpServlet {
             DAO_Account daoAccount = new DAO_Account();
 
             if (daoAccount.gravarAccount(conta)) {
-                mensagem = "Conta gravada com sucesso!";
+                mensagem = "Conta Corrente adicionada com sucesso!";
             } else {
-                mensagem = "Erro ao gravar conta!";
+                mensagem = "Erro ao gravar Conta Corrente!";
             }
 
             request.setAttribute("mensagem", mensagem);
@@ -76,7 +70,7 @@ public class Controller_Account extends HttpServlet {
             rd.forward(request, response);
 
         } catch (Exception e) {
-            mensagem = "Erro de exceção ao gravar conta!";
+            mensagem = "Erro de exceção ao adicionar Conta Corrente!";
             request.setAttribute("mensagem", mensagem);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-user.jsp");
             rd.forward(request, response);

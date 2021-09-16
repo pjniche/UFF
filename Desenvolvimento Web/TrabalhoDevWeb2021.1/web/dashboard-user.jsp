@@ -1,3 +1,4 @@
+<%@page import="aplication.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,20 +13,18 @@
 
             <!-- Conteúdo aqui -->
             <%
-            /*
-                String usuario = (String)session.getAttribute("usuario");
-                if (usuario == null) {
-                    response.sendRedirect("index.jsp");
-                }
-            */
+                User usuarioLogado = (User)session.getAttribute("usuarioLogado");
             %>
+                <div class="alert alert-info" role="alert">
+                        Usuário: <%=usuarioLogado.getNome()%> - CPF: <%=usuarioLogado.getCpf()%> - ID: <%=usuarioLogado.getId()%>
+                </div>
             <%
                 if (request.getAttribute("mensagem") != null) {
                     String mensagem = (String)request.getAttribute("mensagem");
             %>
-                    <div class="alert alert-success" role="alert">
-                        <%=mensagem%>
-                    </div>
+                    <script>
+                        alert("<%=mensagem%>");
+                    </script>
             <% } %>
 	    </div>
 

@@ -16,11 +16,10 @@
             	<%
                		User aux = (User)request.getAttribute("admin");
             	%>
-		    	<h4>Cadastrar administrador</h4>
 		    	<form method="POST" action="Controller_Admin">
 			    	<div class="mb-3">
 				    	<label for="Nome" class="form-label">Nome</label>
-				    	<input type="text" maxlength="20" class="form-control" name="nome" id="nome" placeholder="Digite seu nome." required>
+				    	<input type="text" maxlength="20" class="form-control" name="nome" id="nome" placeholder="Digite o nome do administrador." required>
 			    	</div>
 			    	<div class="form-group">
 				    	<label for="cpf">CPF</label>
@@ -28,9 +27,9 @@
 			    	</div>
 			    	<div class="form-group">
 				    	<label for="senha">Senha</label>
-				    	<input type="password" maxlength="255" class="form-control" name="senha" id="senha" placeholder="Digite a sua senha." required>
+				    	<input type="password" maxlength="255" class="form-control" name="senha" id="senha" placeholder="Digite a senha do administrador." required>
 			    	</div>
-			    	<button type="submit" class="btn btn-primary">Cadastrar</button>
+			    	<button type="submit" class="btn btn-primary">Cadastrar Administrador</button>
 		    	</form>
 			</div>
         </div>

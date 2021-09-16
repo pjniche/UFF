@@ -16,19 +16,12 @@
                 <%
                     Transaction aux = (Transaction)request.getAttribute("lancamento");
                 %>
-		        <h4>Adicionar lançamento</h4>
                 <form method="POST" action="Controller_Transaction">
-                    <div class="mb-3">
-                        <label for="id_conta" class="form-label">Id Conta</label>
-                        <input type="number" maxlength="11" class="form-control" name="id_conta" id="id_conta" placeholder="Digite aqui." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="id_categoria">Id Categoria</label>
-                        <input type="number" maxlength="11" class="form-control" name="id_categoria" id="id_categoria" placeholder="Digite aqui." required>
-                    </div>
+                    <input type="hidden" maxlength="11" class="form-control" name="id_conta" id="id_conta" value="" required>
+                    <input type="hidden" maxlength="11" class="form-control" name="id_categoria" id="id_categoria" value="" required>
                     <div class="form-group">
                         <label for="valor">Valor</label>
-                        <input type="" maxlength="" class="form-control" name="valor" id="valor" placeholder="Digite aqui." required>
+                        <input type="" maxlength="" class="form-control money2" name="valor" id="valor" placeholder="Digite aqui." required>
                     </div>
                     <div class="form-group">
                         <label for="operacao">Operação</label>
@@ -36,13 +29,13 @@
                     </div>
                     <div class="form-group">
                         <label for="data">Data</label>
-                        <input type="" maxlength="" class="form-control" name="data" id="data" placeholder="Digite aqui." required>
+                        <input type="text" maxlength="" class="form-control" name="data" id="data" placeholder="Digite aqui." required>
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descrição</label>
-                        <input type="" maxlength="" class="form-control" name="descricao" id="descricao" placeholder="Digite aqui. (Opcional)">
+                        <input type="text" maxlength="" class="form-control" name="descricao" id="descricao" placeholder="Digite aqui. (Opcional)">
                     </div>
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" class="btn btn-info">Adicionar Lançamento</button>
                 </form>
             </div>
         </div>

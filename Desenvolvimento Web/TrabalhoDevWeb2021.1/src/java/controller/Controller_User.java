@@ -46,35 +46,22 @@ public class Controller_User extends HttpServlet {
                 exibir.forward(request, response);
                 break;
             
-            /*
             case "editar":
-
                 id = Integer.parseInt(request.getParameter("id"));
-                user = contatodao.getContatoPorID(id);
-
-                if (contato.getId() > 0) {
-                    request.setAttribute("contato", contato);
-                    RequestDispatcher rs = request.getRequestDispatcher("FormContato.jsp");
-                    rs.forward(request, response);
+                user = daoUser.getUserByID(id);
+                
+                if (daoUser.editSuspenso(user)) {
+                    usuarios = daoUser.getListaUser();
+                    request.setAttribute("usuarios", usuarios);
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/list-user.jsp");
+                    rd.forward(request, response);
                 } else {
-                    String mensagem = "Erro ao gravar usuário!";
+                    String mensagem = "Erro ao editar usuário!";
                     request.setAttribute("mensagem", mensagem);
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/Mensagem.jsp");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
                     rd.forward(request, response);
                 }
                 break;
-
-            case "excluir":
-
-                id = Integer.parseInt(request.getParameter("id"));
-                contatodao.excluir(id);
-
-                meusContatos = contatodao.getLista();
-                request.setAttribute("meusContatos", meusContatos);
-                RequestDispatcher aposexcluir = getServletContext().getRequestDispatcher("/ListaContatoView.jsp");
-                aposexcluir.forward(request, response);
-                break;
-            */
         }
     }
 

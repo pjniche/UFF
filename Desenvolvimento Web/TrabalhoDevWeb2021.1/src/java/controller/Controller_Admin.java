@@ -41,10 +41,9 @@ public class Controller_Admin extends HttpServlet {
             case "listar":
                 administradores = daoAdmin.getListaAdmin();
                 request.setAttribute("administradores", administradores);
-                RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
+                RequestDispatcher exibir = getServletContext().getRequestDispatcher("/");
                 exibir.forward(request, response);
                 break;
-        
         }
     }
 
