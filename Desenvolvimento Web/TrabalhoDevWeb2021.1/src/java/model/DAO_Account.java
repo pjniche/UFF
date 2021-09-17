@@ -66,7 +66,7 @@ public class DAO_Account extends HttpServlet {
     public Account getAccountByID( int id ) {
         Account conta = new Account();
         try {
-            String sql = "SELECT * FROM contas WHERE id = ?";
+            String sql = "SELECT * FROM contas WHERE id_usuario = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             

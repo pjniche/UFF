@@ -50,24 +50,35 @@ public class Controller_Account extends HttpServlet {
         String mensagem;
         try {
             Account conta = new Account();
-
-            conta.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
-            conta.setNome_conta(request.getParameter("nome_conta"));
-            conta.setBanco(request.getParameter("banco"));
-            conta.setAgencia(request.getParameter("agencia"));
-            conta.setConta_corrente(request.getParameter("conta_corrente"));
-
             DAO_Account daoAccount = new DAO_Account();
+            
+            int id_usuario = Integer.parseInt(request.getParameter("id_usuario"));
+            conta = daoAccount.getAccountByID(id_usuario);
 
-            if (daoAccount.gravarAccount(conta)) {
-                mensagem = "Conta Corrente adicionada com sucesso!";
+            if (id_usuario == conta.getId_usuario()) {
+                mensagem = "Usuário já possui uma conta cadastrada!";
+                request.setAttribute("mensagem", mensagem);
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-user.jsp");
+                rd.forward(request, response);
+            
             } else {
-                mensagem = "Erro ao gravar Conta Corrente!";
-            }
 
-            request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-user.jsp");
-            rd.forward(request, response);
+                conta.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+                conta.setNome_conta(request.getParameter("nome_conta"));
+                conta.setBanco(request.getParameter("banco"));
+                conta.setAgencia(request.getParameter("agencia"));
+                conta.setConta_corrente(request.getParameter("conta_corrente"));
+
+                if (daoAccount.gravarAccount(conta)) {
+                    mensagem = "Conta Corrente adicionada com sucesso!";
+                } else {
+                    mensagem = "Erro ao gravar Conta Corrente!";
+                }
+
+                request.setAttribute("mensagem", mensagem);
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-user.jsp");
+                rd.forward(request, response);
+            }
 
         } catch (Exception e) {
             mensagem = "Erro de exceção ao adicionar Conta Corrente!";

@@ -14,18 +14,24 @@
             <!-- Conteúdo aqui -->
             <%
                 User usuarioLogado = (User)session.getAttribute("usuarioLogado");
+                if (usuarioLogado == null) {
+                    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                    rd.forward(request, response);
+                
+                } else {
+                    
+                    if (request.getAttribute("mensagem") != null) {
+                        String mensagem = (String)request.getAttribute("mensagem");
             %>
-                <div class="alert alert-info" role="alert">
-                        Usuário: <%=usuarioLogado.getNome()%> - CPF: <%=usuarioLogado.getCpf()%> - ID: <%=usuarioLogado.getId()%>
-                </div>
-            <%
-                if (request.getAttribute("mensagem") != null) {
-                    String mensagem = (String)request.getAttribute("mensagem");
+                        <script>
+                            alert("<%=mensagem%>");
+                        </script>
+            <%      }
+                }
             %>
-                    <script>
-                        alert("<%=mensagem%>");
-                    </script>
-            <% } %>
+            <div class="alert alert-info" role="alert">
+                Usuário: <%=usuarioLogado.getNome()%> - CPF: <%=usuarioLogado.getCpf()%> - ID: <%=usuarioLogado.getId()%>
+            </div>
 	    </div>
 
         <!-- JavaScript (Opcional) -->

@@ -29,3 +29,4 @@
   		</div>
 	</nav>
 </p>
+<!-- Tratar as requisições GET! -->

@@ -14,7 +14,8 @@
 
             <!-- Conteúdo aqui -->
             <%
-               ArrayList<User> lista = (ArrayList<User>)request.getAttribute("usuarios");
+                // Tratar as requisições GET!
+                ArrayList<User> lista = (ArrayList<User>)request.getAttribute("usuarios");
             %>
             <table class="table table-hover">
                 <thead>
@@ -26,16 +27,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (int i = 0; i < lista.size(); i++) {
-                        String link = "Controller_User?option=editar&id="+lista.get(i).getId();
-                    %>
+                    <% for (int i = 0; i < lista.size(); i++) { %>
                     <tr>
                         <td><%=lista.get(i).getNome()%></td>
                         <td><%=lista.get(i).getCpf()%></td>
                         <td><%=lista.get(i).getSuspenso()%></td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a type="button" class="btn btn-primary" href="<%=link%>">Alterar</a>
+                                <a type="button" class="btn btn-primary" href="Controller_User?option=editar&id=<%=lista.get(i).getId()%>">Alterar</a>
                             </div>
                         </td>
                     </tr>

@@ -14,11 +14,17 @@
 		    <!-- Conteúdo aqui -->
 			<div class="col-8 mt-5">
             	<%
-               		User aux = (User)request.getAttribute("admin");
+               		User usuarioLogado = (User)session.getAttribute("usuarioLogado");
+                    if (usuarioLogado == null) {
+                        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                        rd.forward(request, response);
+                    } else {
+						User aux = (User)request.getAttribute("admin");
+					}
             	%>
 		    	<form method="POST" action="Controller_Admin">
 			    	<div class="mb-3">
-				    	<label for="Nome" class="form-label">Nome</label>
+				    	<label for="nome" class="form-label">Administrador</label>
 				    	<input type="text" maxlength="20" class="form-control" name="nome" id="nome" placeholder="Digite o nome do administrador." required>
 			    	</div>
 			    	<div class="form-group">
