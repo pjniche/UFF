@@ -28,7 +28,6 @@ public class DAO_Account extends HttpServlet {
 
     public boolean gravarAccount( Account conta ) {
         try {
-            // Realizar uma inclusão
             String sql = "INSERT INTO contas (id_usuario, nome_conta, banco, agencia, conta_corrente) VALUES (?,?,?,?,?)";
             
             PreparedStatement ps = con.prepareStatement(sql);
@@ -66,6 +65,30 @@ public class DAO_Account extends HttpServlet {
     public Account getAccountByID( int id ) {
         Account conta = new Account();
         try {
+            String sql = "SELECT * FROM contas WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                conta.setId(rs.getInt("id"));
+                conta.setId_usuario(rs.getInt("id_usuario"));
+                conta.setNome_conta(rs.getString("nome_conta"));
+                conta.setBanco(rs.getString("banco"));
+                conta.setAgencia(rs.getString("agencia"));
+                conta.setConta_corrente(rs.getString("conta_corrente"));
+            }
+            
+        } catch( SQLException e ) {
+            System.out.println("Erro de SQL: " + e.getMessage());
+        }
+        return conta;
+    }
+
+    public Account getAccountByUserID( int id ) {
+        Account conta = new Account();
+        try {
             String sql = "SELECT * FROM contas WHERE id_usuario = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -88,16 +111,15 @@ public class DAO_Account extends HttpServlet {
     }
 
     public ArrayList<Account> getListaAccount() {
-        //Cria o objeto que irá armazenar os registros retornados do BD.
         ArrayList<Account> resultado = new ArrayList<>();
-        try {            
-            // Cria o objeto que será utilizado para enviar comandos SQL para o BD.
+        try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM contas");
-            // rs.next() Aponta para o próximo registro do BD, se houver um.
+            
             while( rs.next() ) {
                 Account conta = new Account();
                 
+                conta.setId(rs.getInt("id") );
                 conta.setId_usuario(rs.getInt("id_usuario") );
                 conta.setNome_conta( rs.getString("nome_conta") );
                 conta.setBanco(rs.getString("banco") );
@@ -109,7 +131,6 @@ public class DAO_Account extends HttpServlet {
         } catch( SQLException e ) {
             System.out.println("Erro de SQL: " + e.getMessage());
         }
-        
         return resultado;
     }
 }

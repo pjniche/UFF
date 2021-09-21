@@ -19,21 +19,15 @@ public class Controller_Admin extends HttpServlet {
             throws ServletException, IOException {
 
         DAO_Admin daoAdmin = new DAO_Admin();
-        String option = (String)request.getParameter("option");
+        User administrador = new User();
         ArrayList<User> administradores;
         int id;
 
-        User admin = new User();
+        String option = (String)request.getParameter("option");
 
         switch (option) {
 
             case "adicionar":
-                admin.setId(0);
-                admin.setNome("");
-                admin.setCpf("");
-                admin.setSenha("");
-
-                request.setAttribute("admin", admin);
                 RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-admin.jsp");
                 adicionar.forward(request, response);
                 break;
@@ -41,8 +35,32 @@ public class Controller_Admin extends HttpServlet {
             case "listar":
                 administradores = daoAdmin.getListaAdmin();
                 request.setAttribute("administradores", administradores);
-                RequestDispatcher exibir = getServletContext().getRequestDispatcher("/");
-                exibir.forward(request, response);
+                RequestDispatcher listarAdmin = getServletContext().getRequestDispatcher("/list-admin.jsp");
+                listarAdmin.forward(request, response);
+                break;
+            
+            case "editar":
+                id = Integer.parseInt(request.getParameter("id_admin"));
+                administrador = daoAdmin.getAdminByID(id);
+                request.setAttribute("administrador", administrador);
+                RequestDispatcher editar = getServletContext().getRequestDispatcher("/form-admin-edit.jsp");
+                editar.forward(request, response);
+                break;
+
+            case "excluir":
+                id = Integer.parseInt(request.getParameter("id_admin"));
+
+                if (daoAdmin.excluirAdmin(id)) {
+                    administradores = daoAdmin.getListaAdmin();
+                    request.setAttribute("administradores", administradores);
+                    RequestDispatcher excluir = getServletContext().getRequestDispatcher("/list-admin.jsp");
+                    excluir.forward(request, response);
+                } else {
+                    String mensagem = "Erro ao excluir administrador!";
+                    request.setAttribute("mensagem", mensagem);
+                    RequestDispatcher excluir = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
+                    excluir.forward(request, response);
+                }
                 break;
         }
     }
@@ -54,17 +72,24 @@ public class Controller_Admin extends HttpServlet {
         String mensagem;
         try {
             User admin = new User();
+            User aux = new User();
 
+            admin.setId(Integer.parseInt(request.getParameter("id")));
             admin.setNome(request.getParameter("nome"));
             admin.setCpf(request.getParameter("cpf"));
             admin.setSenha(request.getParameter("senha"));
 
             DAO_Admin daoAdmin = new DAO_Admin();
 
-            if (daoAdmin.gravarAdmin(admin)) {
-                mensagem = "Administrador gravado com sucesso!";
+            aux = daoAdmin.getAdminByCpf(admin.getCpf());
+            if ((admin.getCpf().equals(aux.getCpf())) && (admin.getId() != aux.getId())) {
+                mensagem = "CPF já cadastrado no sistema!";
             } else {
-                mensagem = "Erro ao gravar administrador!";
+                if (daoAdmin.gravarAdmin(admin)) {
+                    mensagem = "Administrador gravado com sucesso!";
+                } else {
+                    mensagem = "Erro ao gravar administrador!";
+                }
             }
 
             request.setAttribute("mensagem", mensagem);

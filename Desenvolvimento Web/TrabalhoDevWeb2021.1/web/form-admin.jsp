@@ -18,11 +18,10 @@
                     if (usuarioLogado == null) {
                         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                         rd.forward(request, response);
-                    } else {
-						User aux = (User)request.getAttribute("admin");
-					}
+                    }
             	%>
 		    	<form method="POST" action="Controller_Admin">
+					<input type="hidden" maxlength="11" class="form-control" name="id" id="id" value="0" required>
 			    	<div class="mb-3">
 				    	<label for="nome" class="form-label">Administrador</label>
 				    	<input type="text" maxlength="20" class="form-control" name="nome" id="nome" placeholder="Digite o nome do administrador." required>
@@ -35,7 +34,7 @@
 				    	<label for="senha">Senha</label>
 				    	<input type="password" maxlength="255" class="form-control" name="senha" id="senha" placeholder="Digite a senha do administrador." required>
 			    	</div>
-			    	<button type="submit" class="btn btn-primary">Cadastrar Administrador</button>
+			    	<button type="submit" class="btn btn-info">Cadastrar Administrador</button>
 		    	</form>
 			</div>
         </div>

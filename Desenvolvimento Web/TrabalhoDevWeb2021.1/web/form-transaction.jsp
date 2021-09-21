@@ -1,5 +1,7 @@
 <%@page import="aplication.User"%>
-<%@page import="aplication.Transaction"%>
+<%@page import="aplication.Account"%>
+<%@page import="aplication.Category"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,20 +17,18 @@
 		    <!-- Conteúdo aqui -->
             <div class="col-8 mt-5">
                 <%
-                    User usuarioLogado = (User)session.getAttribute("usuarioLogado");
-                    if (usuarioLogado == null) {
-                        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                        rd.forward(request, response);
-                    }
+                    Account conta = (Account)request.getAttribute("conta");
+                    ArrayList<Category> listaCategorias = (ArrayList<Category>)request.getAttribute("categorias");
                 %>
                 <form method="POST" action="Controller_Transaction">
-                    <input type="hidden" maxlength="11" class="form-control" name="id_conta" id="id_conta" value="" required>
+                    <input type="hidden" maxlength="11" class="form-control" name="id" id="id" value="0" required>
+                    <input type="hidden" maxlength="11" class="form-control" name="id_conta" id="id_conta" value="<%=conta.getId()%>" required>
                     <div class="form-group">
-                        <label for="id_categoria">Categoria <-- Falta implementar!</label>
+                        <label for="id_categoria">Categoria</label>
                         <select class="form-control" name="id_categoria" id="id_categoria" required>
-                            <option>fazer um "for"</option>
-                            <option>da lista de categorias</option>
-                            <option>aqui!</option>
+                            <% for (int i = 0; i < listaCategorias.size(); i++) { %>
+                                <option><%=listaCategorias.get(i).getId()%> - <%=listaCategorias.get(i).getDescricao()%></option>
+                            <% } %>
                         </select>
                     </div>
                     <div class="form-group">
@@ -37,11 +37,11 @@
                     </div>
                     <div class="form-group">
                         <label for="operacao">Operação</label>
-                        <input type="text" maxlength="1" class="form-control" name="operacao" id="operacao" placeholder="'C' para Crédito ou 'D' para Débito." required>
+                        <input type="text" maxlength="1" class="form-control" name="operacao" id="operacao" placeholder="'C' para Crédito ou 'D' para Débito." onkeydown="upperCaseF(this)" required>
                     </div>
                     <div class="form-group">
-                        <label for="data">Data <-- Falta implementar!</label>
-                        <input type="text" maxlength="" class="form-control" name="data" id="data" placeholder="Digite aqui." required>
+                        <label for="data">Data</label>
+                        <input type="date" class="form-control" name="date" id="date" required>
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descrição (Opcional)</label>
@@ -55,5 +55,12 @@
         <!-- JavaScript (Opcional) -->
         <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
 	    <%@include file="scripts.html" %>
+        <script>
+            function upperCaseF(key){
+                setTimeout(function(){
+                    key.value = key.value.toUpperCase();
+                }, 1);
+            }
+        </script>
     </body>
 </html>

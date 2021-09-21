@@ -30,10 +30,8 @@ public class DAO_User extends HttpServlet {
         try {
             String sql;
             if ( usuario.getId() == 0 ) {
-                // Realizar uma inclusão
                 sql = "INSERT INTO usuarios (nome, cpf, senha, suspenso) VALUES (?,?,?,?)";
             } else {
-                // Realizar uma alteração
                 sql = "UPDATE usuarios SET nome=?, cpf=?, senha=?, suspenso=? WHERE id=?";
             }
             
@@ -48,6 +46,19 @@ public class DAO_User extends HttpServlet {
             
             ps.execute();
             
+            return true;
+        } catch( SQLException e ) {
+            System.out.println("Erro de SQL: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean excluirUser( int id ) {
+        try {
+            String sql = "DELETE FROM usuarios WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
             return true;
         } catch( SQLException e ) {
             System.out.println("Erro de SQL: " + e.getMessage());
@@ -101,14 +112,35 @@ public class DAO_User extends HttpServlet {
         return user;
     }
 
+    public User getUserByCpf( String cpf ) {
+        User user = new User();
+        try {
+            String sql = "SELECT * FROM usuarios WHERE cpf = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, cpf);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                user.setId(rs.getInt("id"));
+                user.setNome(rs.getString("nome"));
+                user.setCpf(rs.getString("cpf"));
+                user.setSenha(rs.getString("senha"));
+                user.setSuspenso(rs.getString("suspenso"));
+            }
+            
+        } catch( SQLException e ) {
+            System.out.println("Erro de SQL: " + e.getMessage());
+        }
+        return user;
+    }
+
     public ArrayList<User> getListaUser() {
-        //Cria o objeto que irá armazenar os registros retornados do BD.
         ArrayList<User> resultado = new ArrayList<>();
-        try {            
-            // Cria o objeto que será utilizado para enviar comandos SQL para o BD.
+        try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios ORDER BY nome");
-            // rs.next() Aponta para o próximo registro do BD, se houver um. 
+            ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios");
+            
             while( rs.next() ) {
                 User usuario = new User();
                 
@@ -119,6 +151,29 @@ public class DAO_User extends HttpServlet {
                 usuario.setSuspenso(rs.getString("suspenso") );
                 
                 resultado.add(usuario);
+            }
+        } catch( SQLException e ) {
+            System.out.println("Erro de SQL: " + e.getMessage());
+        }
+        
+        return resultado;
+    }
+
+    public ArrayList<User> getListaAdmin() {
+        ArrayList<User> resultado = new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM administradores");
+            
+            while( rs.next() ) {
+                User admin = new User();
+                
+                admin.setId(rs.getInt("id") );
+                admin.setNome( rs.getString("nome") );
+                admin.setCpf(rs.getString("cpf") );
+                admin.setSenha(rs.getString("senha") );
+                
+                resultado.add(admin);
             }
         } catch( SQLException e ) {
             System.out.println("Erro de SQL: " + e.getMessage());

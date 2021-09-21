@@ -27,10 +27,10 @@
 				        <label for="senha">Senha</label>
 				        <input type="password" maxlength="255" class="form-control" name="senha" id="senha" placeholder="Digite a sua senha." required>
 			        </div>
-			        <button type="submit" class="btn btn-primary">Login</button>
+			        <button type="submit" class="btn btn-info">Login</button>
 		        </form>
                 <p></p>
-                <div><a href="index.jsp">Retornar</a></div>
+                <div><a class="text-info" href="index.jsp">Retornar</a></div>
             </div>
 	    </div>
 

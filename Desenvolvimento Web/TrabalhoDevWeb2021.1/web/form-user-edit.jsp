@@ -18,27 +18,29 @@
                     if (usuarioLogado == null) {
                         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                         rd.forward(request, response);
-                    }
+                    } User aux = (User)request.getAttribute("usuario");
                 %>
                 <form method="POST" action="Controller_User">
-                    <input type="hidden" maxlength="11" class="form-control" name="id" id="id" value="0" required>
                     <div class="mb-3">
-                        <label for="nome" class="form-label">Usuário</label>
-                        <input type="text" maxlength="20" class="form-control" name="nome" id="nome" placeholder="Digite o nome do usuário." required>
+                        <label for="nome" class="form-label"><h5>ID: <%=aux.getId()%></h5></label>
+                        <input type="hidden" maxlength="11" class="form-control" name="id" id="id" value="<%=aux.getId()%>" required>
+                        <br>
+                        <label for="nome" class="form-label">Usuário: <%=aux.getNome()%></label>
+                        <input type="text" maxlength="20" class="form-control" name="nome" id="nome" placeholder="Digite o NOVO nome do usuário." required>
                     </div>
                     <div class="form-group">
-                        <label for="cpf">CPF</label>
-                        <input type="text" class="form-control cpf" name="cpf" id="cpf" placeholder="Ex: xxx.xxx.xxx-xx" required>
+                        <label for="cpf">CPF: <%=aux.getCpf()%></label>
+                        <input type="hidden" class="form-control cpf" name="cpf" id="cpf" value="<%=aux.getCpf()%>" required>
                     </div>
                     <div class="form-group">
-                        <label for="senha">Senha</label>
-                        <input type="password" maxlength="255" class="form-control" name="senha" id="senha" placeholder="Digite a senha do usuário." required>
+                        <label for="senha">Senha: <%=aux.getSenha()%></label>
+                        <input type="password" maxlength="255" class="form-control" name="senha" id="senha" placeholder="Digite a NOVA senha do usuário." required>
                     </div>
                     <div class="form-group">
-                        <label for="suspenso">Suspenso?</label>
+                        <label for="suspenso">Acesso Suspenso? <%=aux.getSuspenso()%></label>
                         <input type="text" maxlength="1" class="form-control" name="suspenso" id="suspenso" placeholder="'S' para Suspenso ou 'N' para Não Suspenso." onkeydown="upperCaseF(this)" required>
                     </div>
-                    <button type="submit" class="btn btn-info">Cadastrar Usuário</button>
+                    <button type="submit" class="btn btn-info">Editar Usuário Cadastrado</button>
                 </form>
             </div>
         </div>

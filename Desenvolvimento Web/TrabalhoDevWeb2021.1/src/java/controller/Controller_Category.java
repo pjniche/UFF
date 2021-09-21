@@ -19,19 +19,15 @@ public class Controller_Category extends HttpServlet {
             throws ServletException, IOException {
 
         DAO_Category daoCategory = new DAO_Category();
-        String option = (String)request.getParameter("option");
+        Category categoria = new Category();
         ArrayList<Category> categorias;
         int id;
 
-        Category categoria = new Category();
+        String option = (String)request.getParameter("option");
 
         switch (option) {
 
             case "adicionar":
-                categoria.setId(0);
-                categoria.setDescricao("");
-
-                request.setAttribute("categoria", categoria);
                 RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-category.jsp");
                 adicionar.forward(request, response);
                 break;
@@ -39,10 +35,33 @@ public class Controller_Category extends HttpServlet {
             case "listar":
                 categorias = daoCategory.getListaCategory();
                 request.setAttribute("categorias", categorias);
-                RequestDispatcher exibir = getServletContext().getRequestDispatcher("");
+                RequestDispatcher exibir = getServletContext().getRequestDispatcher("/list-category.jsp");
                 exibir.forward(request, response);
                 break;
-        
+
+            case "editar":
+                id = Integer.parseInt(request.getParameter("id_categoria"));
+                categoria = daoCategory.getCategoryByID(id);
+                request.setAttribute("categoria", categoria);
+                RequestDispatcher editar = getServletContext().getRequestDispatcher("/form-category-edit.jsp");
+                editar.forward(request, response);
+                break;
+
+            case "excluir":
+                id = Integer.parseInt(request.getParameter("id_categoria"));
+
+                if (daoCategory.excluirCategory(id)) {
+                    categorias = daoCategory.getListaCategory();
+                    request.setAttribute("categorias", categorias);
+                    RequestDispatcher excluir = getServletContext().getRequestDispatcher("/list-category.jsp");
+                    excluir.forward(request, response);
+                } else {
+                    String mensagem = "Erro ao excluir categoria!";
+                    request.setAttribute("mensagem", mensagem);
+                    RequestDispatcher suspender = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
+                    suspender.forward(request, response);
+                }
+                break;
         }
     }
 
@@ -54,6 +73,7 @@ public class Controller_Category extends HttpServlet {
         try {
             Category categoria = new Category();
 
+            categoria.setId(Integer.parseInt(request.getParameter("id")));
             categoria.setDescricao(request.getParameter("categoria"));
 
             DAO_Category daoCategory = new DAO_Category();

@@ -19,22 +19,16 @@ public class Controller_User extends HttpServlet {
             throws ServletException, IOException {
 
         DAO_User daoUser = new DAO_User();
-        String option = (String)request.getParameter("option");
+        User usuario = new User();
         ArrayList<User> usuarios;
+        ArrayList<User> administradores;
         int id;
 
-        User user = new User();
+        String option = (String)request.getParameter("option");
 
         switch (option) {
 
             case "adicionar":
-                user.setId(0);
-                user.setNome("");
-                user.setCpf("");
-                user.setSenha("");
-                user.setSuspenso("");
-
-                request.setAttribute("user", user);
                 RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-user.jsp");
                 adicionar.forward(request, response);
                 break;
@@ -42,24 +36,48 @@ public class Controller_User extends HttpServlet {
             case "listar":
                 usuarios = daoUser.getListaUser();
                 request.setAttribute("usuarios", usuarios);
-                RequestDispatcher exibir = getServletContext().getRequestDispatcher("/list-user.jsp");
-                exibir.forward(request, response);
+                RequestDispatcher listar = getServletContext().getRequestDispatcher("/list-user.jsp");
+                listar.forward(request, response);
                 break;
             
             case "editar":
-                id = Integer.parseInt(request.getParameter("id"));
-                user = daoUser.getUserByID(id);
-                
-                if (daoUser.editSuspenso(user)) {
+                id = Integer.parseInt(request.getParameter("id_usuario"));
+                usuario = daoUser.getUserByID(id);
+                request.setAttribute("usuario", usuario);
+                RequestDispatcher editar = getServletContext().getRequestDispatcher("/form-user-edit.jsp");
+                editar.forward(request, response);
+                break;
+
+            case "excluir":
+                id = Integer.parseInt(request.getParameter("id_usuario"));
+
+                if (daoUser.excluirUser(id)) {
                     usuarios = daoUser.getListaUser();
                     request.setAttribute("usuarios", usuarios);
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/list-user.jsp");
-                    rd.forward(request, response);
+                    RequestDispatcher excluir = getServletContext().getRequestDispatcher("/list-user.jsp");
+                    excluir.forward(request, response);
+                } else {
+                    String mensagem = "Erro ao excluir usuário!";
+                    request.setAttribute("mensagem", mensagem);
+                    RequestDispatcher excluir = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
+                    excluir.forward(request, response);
+                }
+                break;
+            
+            case "suspender":
+                id = Integer.parseInt(request.getParameter("id_usuario"));
+                usuario = daoUser.getUserByID(id);
+                
+                if (daoUser.editSuspenso(usuario)) {
+                    usuarios = daoUser.getListaUser();
+                    request.setAttribute("usuarios", usuarios);
+                    RequestDispatcher suspender = getServletContext().getRequestDispatcher("/list-user.jsp");
+                    suspender.forward(request, response);
                 } else {
                     String mensagem = "Erro ao editar usuário!";
                     request.setAttribute("mensagem", mensagem);
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
-                    rd.forward(request, response);
+                    RequestDispatcher suspender = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
+                    suspender.forward(request, response);
                 }
                 break;
         }
@@ -72,7 +90,9 @@ public class Controller_User extends HttpServlet {
         String mensagem;
         try {
             User user = new User();
+            User aux = new User();
 
+            user.setId(Integer.parseInt(request.getParameter("id")));
             user.setNome(request.getParameter("nome"));
             user.setCpf(request.getParameter("cpf"));
             user.setSenha(request.getParameter("senha"));
@@ -80,10 +100,15 @@ public class Controller_User extends HttpServlet {
 
             DAO_User daoUser = new DAO_User();
 
-            if (daoUser.gravarUser(user)) {
-                mensagem = "Usuário gravado com sucesso!";
+            aux = daoUser.getUserByCpf(user.getCpf());
+            if ((user.getCpf().equals(aux.getCpf())) && (user.getId() != aux.getId())) {
+                mensagem = "CPF já cadastrado no sistema!";
             } else {
-                mensagem = "Erro ao gravar usuário!";
+                if (daoUser.gravarUser(user)) {
+                    mensagem = "Usuário gravado com sucesso!";
+                } else {
+                    mensagem = "Erro ao gravar usuário!";
+                }
             }
 
             request.setAttribute("mensagem", mensagem);

@@ -1,16 +1,18 @@
 package aplication;
 
+import java.sql.Date;
+
 public class Transaction {
     private int id;
     private int id_conta;
     private int id_categoria;
-    private double valor;
+    private Double valor;
     private String operacao;
-    private String data;
+    private Date data;
     private String descricao;
     
     //Construtor da classe
-    public void Transaction(int id, int id_conta, int id_categoria, double valor, String operacao, String data, String descricao) {
+    public void Transaction(int id, int id_conta, int id_categoria, Double valor, String operacao, Date data, String descricao) {
         this.id = id;
         this.id_conta = id_conta;
         this.id_categoria = id_categoria;
@@ -48,11 +50,11 @@ public class Transaction {
         this.id_categoria = id_categoria;
     }
 
-    public double getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
@@ -64,11 +66,11 @@ public class Transaction {
         this.operacao = operacao;
     }
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

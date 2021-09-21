@@ -19,7 +19,7 @@
                     rd.forward(request, response);
                 
                 } else {
-                    
+
                     if (request.getAttribute("mensagem") != null) {
                         String mensagem = (String)request.getAttribute("mensagem");
             %>
@@ -30,7 +30,7 @@
                 }
             %>
             <div class="alert alert-info" role="alert">
-                Usuário: <%=usuarioLogado.getNome()%> - CPF: <%=usuarioLogado.getCpf()%> - ID: <%=usuarioLogado.getId()%>
+                ID: <%=usuarioLogado.getId()%> - Usuário: <%=usuarioLogado.getNome()%> - CPF: <%=usuarioLogado.getCpf()%>
             </div>
 	    </div>
 

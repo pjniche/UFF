@@ -30,10 +30,8 @@ public class DAO_Category extends HttpServlet {
         try {
             String sql;
             if ( categoria.getId() == 0 ) {
-                // Realizar uma inclusão
                 sql = "INSERT INTO categorias (descricao) VALUES (?)";
             } else {
-                // Realizar uma alteração
                 sql = "UPDATE categorias SET descricao=? WHERE id=?";
             }
             
@@ -86,16 +84,15 @@ public class DAO_Category extends HttpServlet {
     }
 
     public ArrayList<Category> getListaCategory() {
-        //Cria o objeto que irá armazenar os registros retornados do BD.
         ArrayList<Category> resultado = new ArrayList<>();
         try {            
-            // Cria o objeto que será utilizado para enviar comandos SQL para o BD.
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM categorias");
-            // rs.next() Aponta para o próximo registro do BD, se houver um.
+            
             while( rs.next() ) {
                 Category categoria = new Category();
                 
+                categoria.setId(rs.getInt("id"));
                 categoria.setDescricao(rs.getString("descricao") );
                 
                 resultado.add(categoria);

@@ -30,7 +30,7 @@
                 }
             %>
             <div class="alert alert-info" role="alert">
-                Admin: <%=usuarioLogado.getNome()%> - CPF: <%=usuarioLogado.getCpf()%> - ID: <%=usuarioLogado.getId()%>
+                ID: <%=usuarioLogado.getId()%> - Administrador: <%=usuarioLogado.getNome()%> - CPF: <%=usuarioLogado.getCpf()%>
             </div>
 	    </div>
 

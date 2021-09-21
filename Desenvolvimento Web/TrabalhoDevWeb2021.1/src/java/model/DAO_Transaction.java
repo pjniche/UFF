@@ -2,6 +2,7 @@ package model;
 
 import aplication.Transaction;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,10 +32,8 @@ public class DAO_Transaction extends HttpServlet {
         try {
             String sql;
             if ( lancamento.getId() == 0 ) {
-                // Realizar uma inclusão
                 sql = "INSERT INTO lancamentos (id_conta, id_categoria, valor, operacao, data, descricao) VALUES (?,?,?,?,?,?)";
             } else {
-                // Realizar uma alteração
                 sql = "UPDATE lancamentos SET id_conta=?, id_categoria=?, valor=?, operacao=?, data=?, descricao=? WHERE id=?";
             }
             
@@ -43,7 +42,7 @@ public class DAO_Transaction extends HttpServlet {
             ps.setInt(2, lancamento.getId_categoria());
             ps.setDouble(3, lancamento.getValor());
             ps.setString(4, lancamento.getOperacao());
-            ps.setString(5, lancamento.getData());
+            ps.setDate(5, lancamento.getData());
             ps.setString(6, lancamento.getDescricao());
             
             if ( lancamento.getId()> 0 )
@@ -86,7 +85,7 @@ public class DAO_Transaction extends HttpServlet {
                 lancamento.setId_categoria(rs.getInt("id_categoria"));
                 lancamento.setValor(rs.getDouble("valor"));
                 lancamento.setOperacao(rs.getString("operacao"));
-                lancamento.setData(rs.getString("data")); // <<<------ Mudar para o tipo Date!!!
+                lancamento.setData(rs.getDate("data"));
                 lancamento.setDescricao(rs.getString("descricao"));
             }
             
@@ -97,21 +96,20 @@ public class DAO_Transaction extends HttpServlet {
     }
 
     public ArrayList<Transaction> getListaTransaction() {
-        //Cria o objeto que irá armazenar os registros retornados do BD.
         ArrayList<Transaction> resultado = new ArrayList<>();
-        try {            
-            // Cria o objeto que será utilizado para enviar comandos SQL para o BD.
+        try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM lancamentos");
-            // rs.next() Aponta para o próximo registro do BD, se houver um.
+            
             while( rs.next() ) {
                 Transaction lancamento = new Transaction();
                 
+                lancamento.setId(rs.getInt("id") );
                 lancamento.setId_conta(rs.getInt("id_conta") );
                 lancamento.setId_categoria( rs.getInt("id_categoria") );
                 lancamento.setValor(rs.getDouble("valor"));
                 lancamento.setOperacao(rs.getString("operacao") );
-                lancamento.setData(rs.getString("data") ); // <<<------ Mudar para o tipo Date!!!
+                lancamento.setData(rs.getDate("data") );
                 lancamento.setDescricao(rs.getString("descricao") );
                 
                 resultado.add(lancamento);

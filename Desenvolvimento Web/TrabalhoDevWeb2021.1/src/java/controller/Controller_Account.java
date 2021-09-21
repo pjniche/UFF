@@ -19,27 +19,49 @@ public class Controller_Account extends HttpServlet {
             throws ServletException, IOException {
 
         DAO_Account daoAccount = new DAO_Account();
-        String option = (String)request.getParameter("option");
+        Account conta = new Account();
         ArrayList<Account> contas;
         int id;
 
-        Account conta = new Account();
+        String option = (String)request.getParameter("option");
 
         switch (option) {
 
             case "adicionar":
-                conta.setId(0);
-                conta.setId_usuario(0);
-                conta.setNome_conta("");
-                conta.setBanco("");
-                conta.setAgencia("");
-                conta.setConta_corrente("");
-
-                request.setAttribute("conta", conta);
                 RequestDispatcher adicionar = getServletContext().getRequestDispatcher("/form-account.jsp");
                 adicionar.forward(request, response);
                 break;
-        
+
+            case "listar":
+                contas = daoAccount.getListaAccount();
+                request.setAttribute("contas", contas);
+                RequestDispatcher listar = getServletContext().getRequestDispatcher("/list-account.jsp");
+                listar.forward(request, response);
+                break;
+            
+            case "editar":
+                id = Integer.parseInt(request.getParameter("id_conta"));
+                conta = daoAccount.getAccountByID(id);
+                request.setAttribute("conta", conta);
+                RequestDispatcher editar = getServletContext().getRequestDispatcher("/form-account-edit.jsp");
+                editar.forward(request, response);
+                break;
+
+            case "excluir":
+                id = Integer.parseInt(request.getParameter("id_conta"));
+
+                if (daoAccount.excluirAccount(id)) {
+                    contas = daoAccount.getListaAccount();
+                    request.setAttribute("contas", contas);
+                    RequestDispatcher excluir = getServletContext().getRequestDispatcher("/list-account.jsp");
+                    excluir.forward(request, response);
+                } else {
+                    String mensagem = "Erro ao excluir conta corrente!";
+                    request.setAttribute("mensagem", mensagem);
+                    RequestDispatcher excluir = getServletContext().getRequestDispatcher("/dashboard-admin.jsp");
+                    excluir.forward(request, response);
+                }
+                break;
         }
     }
 
@@ -49,11 +71,11 @@ public class Controller_Account extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String mensagem;
         try {
-            Account conta = new Account();
             DAO_Account daoAccount = new DAO_Account();
+            Account conta = new Account();
             
             int id_usuario = Integer.parseInt(request.getParameter("id_usuario"));
-            conta = daoAccount.getAccountByID(id_usuario);
+            conta = daoAccount.getAccountByUserID(id_usuario);
 
             if (id_usuario == conta.getId_usuario()) {
                 mensagem = "Usuário já possui uma conta cadastrada!";
@@ -63,6 +85,7 @@ public class Controller_Account extends HttpServlet {
             
             } else {
 
+                conta.setId(Integer.parseInt(request.getParameter("id")));
                 conta.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
                 conta.setNome_conta(request.getParameter("nome_conta"));
                 conta.setBanco(request.getParameter("banco"));

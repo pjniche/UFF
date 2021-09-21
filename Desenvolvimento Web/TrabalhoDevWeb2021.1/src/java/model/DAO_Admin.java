@@ -30,10 +30,8 @@ public class DAO_Admin extends HttpServlet {
         try {
             String sql;
             if ( administrador.getId() == 0 ) {
-                // Realizar uma inclusão
                 sql = "INSERT INTO administradores (nome, cpf, senha) VALUES (?,?,?)";
             } else {
-                // Realizar uma alteração
                 sql = "UPDATE administradores SET nome=?, cpf=?, senha=? WHERE id=?";
             }
             
@@ -89,14 +87,34 @@ public class DAO_Admin extends HttpServlet {
         return admin;
     }
 
+    public User getAdminByCpf( String cpf ) {
+        User admin = new User();
+        try {
+            String sql = "SELECT * FROM administradores WHERE cpf = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, cpf);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                admin.setId(rs.getInt("id"));
+                admin.setNome(rs.getString("nome"));
+                admin.setCpf(rs.getString("cpf"));
+                admin.setSenha(rs.getString("senha"));
+            }
+            
+        } catch( SQLException e ) {
+            System.out.println("Erro de SQL: " + e.getMessage());
+        }
+        return admin;
+    }
+
     public ArrayList<User> getListaAdmin() {
-        //Cria o objeto que irá armazenar os registros retornados do BD.
         ArrayList<User> resultado = new ArrayList<>();
-        try {            
-            // Cria o objeto que será utilizado para enviar comandos SQL para o BD.
+        try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM administradores");
-            // rs.next() Aponta para o próximo registro do BD, se houver um.
+            
             while( rs.next() ) {
                 User administrador = new User();
 
